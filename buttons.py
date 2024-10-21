@@ -64,6 +64,20 @@ def create_back_button(screen, on_click):
         radius=5,
         onClick=on_click
     )
+def create_next_button(screen, on_click):
+    return Button(
+        screen,
+        720, 620, 150, 50,
+        text='Next',
+        textColour=(247, 250, 248),
+        font=pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 40),
+        margin=50,
+        inactiveColour=(62, 66, 64),
+        inactiveBorderColour=(247, 250, 248),
+        hoverColour=(197, 200, 198),
+        radius=5,
+        onClick=on_click
+    )
 
 # Create character selection info
 def create_selection_message(screen):
