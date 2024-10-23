@@ -84,7 +84,7 @@ def create_selection_message(screen):
     return Button(
         screen,
         100, 100, 740, 50,
-        text='What are the names of your travellers?',
+        text='What are the names of your companions?',
         textColour=(247, 250, 248),
         font=pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 35),
         margin=50,
@@ -99,14 +99,14 @@ def create_name_inputs(screen):
     input_boxes = [
         TextBox(
             screen,
-            300, 180 + i * 65, 412, 50,
+            275, 225 + i * 80, 412, 50,
             textColour=(247, 250, 248),
             font=pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 35),
             margin=50,
             colour=(62, 66, 64),
             radius=5,
         )
-        for i in range(5)
+        for i in range(4)
     ]
     return input_boxes
 
@@ -115,7 +115,7 @@ def create_name_num(screen):
     name_nums = [
         Button(
             screen,
-            225, 180 + i * 65, 50, 50,
+            200, 225 + i * 80, 50, 50,
             text=f'{i+1}.',
             textColour=(247, 250, 248),
             font=pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 35),
@@ -125,6 +125,6 @@ def create_name_num(screen):
             hoverColour=(62, 66, 64),
             radius=5,
         )
-        for i in range(5)
+        for i in range(4)
     ]
     return name_nums
