@@ -53,7 +53,7 @@ def create_quit_button(screen, on_click):
 def create_back_button(screen, on_click):
     return Button(
         screen,
-        550, 620, 150, 50,
+        500, 620, 150, 50,
         text='Back',
         textColour=(247, 250, 248),
         font=pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 40),
@@ -67,7 +67,7 @@ def create_back_button(screen, on_click):
 def create_next_button(screen, on_click):
     return Button(
         screen,
-        720, 620, 150, 50,
+        670, 620, 150, 50,
         text='Next',
         textColour=(247, 250, 248),
         font=pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 40),
