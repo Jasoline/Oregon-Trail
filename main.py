@@ -2,14 +2,16 @@ import pygame
 import pygame_widgets
 from buttons import *
 from stats import *
+
+
 class main:
     def __init__(self):
         self.stats = Stats()
-        
+
     def start(self):
         # Initialize Pygame
         pygame.init()
-        
+
         # Set window dimensions
         width = 1280
         height = 720
@@ -24,11 +26,12 @@ class main:
         bg_title = pygame.image.load("oregontrail.jpg").convert()
         bg_char = pygame.image.load("oregonchar.png").convert()
         bg_char = pygame.transform.scale(bg_char, (1280, 720))
+        bg_saloon = pygame.image.load("pixelsaloon1.png").convert()
+        bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
 
         # Screen helper
         screen_helper = {'screen': 'title'}
         prev_screen = []
-        
 
         # Quit button helper
         def close_window():
@@ -43,14 +46,11 @@ class main:
         # Back button helper
         def click_back():
             screen_helper['screen'] = prev_screen.pop()
-        
+
         def click_next():
             if screen_helper['screen'] == 'char_select':
-                prev_screen.append('char_select')            
+                prev_screen.append('char_select')
                 screen_helper['screen'] = 'month_select'
-            
-            
-
 
         # Import button functionality
         credit_message = create_credit_message(screen)
@@ -83,10 +83,9 @@ class main:
                 quit_button.listen(events)
                 quit_button.draw()
                 quit_button.show()
-                back_button.hide()            
+                back_button.hide()
                 next_button.hide()
 
-                
                 credit_message.draw()
 
             # Render character selection screen
@@ -101,7 +100,6 @@ class main:
                 back_button.draw()
                 next_button.show()
                 next_button.draw()
-                
 
                 selection_message.draw()
                 for num in name_nums:
@@ -109,35 +107,38 @@ class main:
 
                 # Draw input boxes
                 for input_box in name_inputs:
-                    
                     input_box.draw()
 
             elif screen_helper['screen'] == 'month_select':
-                
+
                 screen.fill((0, 0, 0))
-                
 
                 # Draw the buttons
-                
+
                 next_button.draw()
-                
+
                 back_button.draw()
-                font = pygame.font.Font("PixelifySans-VariableFont_wght.ttf",36)
-                lines = ["It is 1848. Your jumping off, place for Oregon is Independence ", "Missouri. You must decide which, month to leave Independence."]
+                font = pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 25)
+                font1 = pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 35)
+                lines = ["It is February of 1852 in Independence, Missouri. Over the past few years you have been hearing",
+                         "rumblings of prospectors getting rich from gold in California. Late last year a traveller in town",
+                         "spread word of the first nuggets being discovered in Oregon. You decide to spend your last bit of",
+                         "inheritance to scrape together supplies and a band of travellers and hit the Oregon trail to filfull" ,
+                         "your dreams of a lavish lifestlye powered by gold! Begin planning your expedition. When will you leave?"]
                 y_offset = 0
                 for line in lines:
                     txtsurf = font.render(line, True, (255, 255, 255))
-                    screen.blit(txtsurf, (50, 25 + y_offset))  # Align text to the left with an x-offset of 50
+                    screen.blit(txtsurf, (25, 25 + y_offset))  # Align text to the left with an x-offset of 50
                     y_offset += txtsurf.get_height()
-                
-                lines = ["1. March", "2. April", "3. May", "4. June", "5. July"]           
+
+                lines = ["1.    March", "2.    April", "3.    May", "4.    June", "5.    July"]
                 for line in lines:
-                    txtsurf = font.render(line, True, (255, 255, 255))
-                    screen.blit(txtsurf, (150, 150 + y_offset))  # Align text to the left with an x-offset of 50
+                    txtsurf = font1.render(line, True, (255, 255, 255))
+                    screen.blit(txtsurf, (150, 100 + y_offset))  # Align text to the left with an x-offset of 50
                     y_offset += txtsurf.get_height()
-                
-                txtsurf = font.render("What is your choice?", True, (255, 255, 255))
-                screen.blit(txtsurf, (50, 500 ))  # Align text to the left with an x-offset of 50
+
+                txtsurf = font1.render("What is your choice?", True, (255, 255, 255))
+                screen.blit(txtsurf, (75, 500))  # Align text to the left with an x-offset of 50
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_1]:
                     print("March selected")
@@ -149,8 +150,9 @@ class main:
                     print("June selected")
                 elif keys[pygame.K_5]:
                     print("July selected")
-                
-                
+
+                # Import saloon cutout image
+                screen.blit(bg_saloon, (625, 175))
 
             # Update the display
             pygame.display.flip()
@@ -160,6 +162,7 @@ class main:
 
         # Quit Pygame
         pygame.quit()
+
 
 if __name__ == '__main__':
     m = main()
