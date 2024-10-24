@@ -1,5 +1,6 @@
 import pygame
 import pygame_widgets
+import os
 from buttons import *
 from stats import *
 
@@ -23,10 +24,10 @@ class main:
         pygame.display.set_caption("Oregon Trail")
 
         # Load background images
-        bg_title = pygame.image.load("oregontrail.jpg").convert()
-        bg_char = pygame.image.load("oregonchar.png").convert()
+        bg_title = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'oregontrail.jpg')).convert()
+        bg_char = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'oregonchar.png')).convert()
         bg_char = pygame.transform.scale(bg_char, (1280, 720))
-        bg_saloon = pygame.image.load("pixelsaloon1.png").convert()
+        bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'pixelsaloon1.png')).convert()
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
 
         # Screen helper
@@ -145,19 +146,19 @@ class main:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_1]:
                     selected_month = 0  # March
-                    print("March selected")
+                    self.stats.set_month(3)
                 elif keys[pygame.K_2]:
                     selected_month = 1  # April
-                    print("April selected")
+                    self.stats.set_month(4)
                 elif keys[pygame.K_3]:
                     selected_month = 2  # May
-                    print("May selected")
+                    self.stats.set_month(5)
                 elif keys[pygame.K_4]:
                     selected_month = 3  # June
-                    print("June selected")
+                    self.stats.set_month(6)
                 elif keys[pygame.K_5]:
                     selected_month = 4  # July
-                    print("July selected")
+                    self.stats.set_month(7)
 
                 # Draw month options with red selection
                 i = 0  # Index counter for tracking the month
