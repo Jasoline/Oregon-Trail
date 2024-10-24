@@ -118,8 +118,9 @@ class main:
                 screen.fill((0, 0, 0))
 
                 # Draw the buttons
-                next_button.draw()
+                
                 back_button.draw()
+                
 
                 # Load fonts
                 font = pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 25)
@@ -146,20 +147,24 @@ class main:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_1]:
                     selected_month = 0  # March
-                    self.stats.set_month(3)
+                    next_button.draw()
+                    next_button.show()
+                    self.stats.month = 3
                 elif keys[pygame.K_2]:
                     selected_month = 1  # April
-                    self.stats.set_month(4)
+                    self.stats.month = 4
                 elif keys[pygame.K_3]:
                     selected_month = 2  # May
-                    self.stats.set_month(5)
+                    self.stats.month = 5
                 elif keys[pygame.K_4]:
                     selected_month = 3  # June
-                    self.stats.set_month(6)
+                    self.stats.month = 6
                 elif keys[pygame.K_5]:
                     selected_month = 4  # July
-                    self.stats.set_month(7)
-
+                    self.stats.month = 7
+                if self.stats.month != 0:
+                    next_button.show()
+                    next_button.draw()
                 # Draw month options with red selection
                 i = 0  # Index counter for tracking the month
                 for line in month_lines:
@@ -171,6 +176,10 @@ class main:
                     screen.blit(months, (150, 100 + y_offset))  # Align text to the left with an x-offset of 50
                     y_offset += months.get_height()
                     i += 1  # Increment the index
+                    
+                # example how to display stats variables
+                # screen.blit(font.render(str(self.stats.month), True, color), (50, 600))
+                
 
                 # Draw the prompt
                 prompt = font1.render("What is your choice?", True, (255, 255, 255))
