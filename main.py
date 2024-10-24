@@ -121,10 +121,10 @@ class main:
                 
                 back_button.draw()
                 
-
                 # Load fonts
-                font = pygame.font.Font(os.path.dirname(__file__),'images', 'PixelifySans-VariableFont_wght.ttf', 25)
-                font1 = pygame.font.Font(os.path.dirname(__file__),'images', 'PixelifySans-VariableFont_wght.ttf', 35)
+               
+                font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+                font1 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
 
                 # Story text
                 lines = [
