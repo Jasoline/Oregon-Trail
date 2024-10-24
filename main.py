@@ -33,6 +33,9 @@ class main:
         screen_helper = {'screen': 'title'}
         prev_screen = []
 
+        # Track the selected month
+        selected_month = None  # Start with no month selected
+
         # Quit button helper
         def close_window():
             nonlocal running
@@ -114,44 +117,65 @@ class main:
                 screen.fill((0, 0, 0))
 
                 # Draw the buttons
-
                 next_button.draw()
-
                 back_button.draw()
+
+                # Load fonts
                 font = pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 25)
                 font1 = pygame.font.Font("PixelifySans-VariableFont_wght.ttf", 35)
-                lines = ["It is February of 1852 in Independence, Missouri. Over the past few years you have been hearing",
-                         "rumblings of prospectors getting rich from gold in California. Late last year a traveller in town",
-                         "spread word of the first nuggets being discovered in Oregon. You decide to spend your last bit of",
-                         "inheritance to scrape together supplies and a band of travellers and hit the Oregon trail to filfull" ,
-                         "your dreams of a lavish lifestlye powered by gold! Begin planning your expedition. When will you leave?"]
+
+                # Story text
+                lines = [
+                    "It is February of 1852 in Independence, Missouri. Over the past few years you have been hearing",
+                    "rumblings of prospectors getting rich from gold in California. Late last year a traveller in town",
+                    "spread word of the first nuggets being discovered in Oregon. You decide to spend your last bit of",
+                    "inheritance to scrape together supplies and a band of travellers and hit the Oregon trail to fulfill",
+                    "your dreams of a lavish lifestyle powered by gold! Begin planning your expedition. When will you leave?"
+                ]
                 y_offset = 0
                 for line in lines:
-                    txtsurf = font.render(line, True, (255, 255, 255))
-                    screen.blit(txtsurf, (25, 25 + y_offset))  # Align text to the left with an x-offset of 50
-                    y_offset += txtsurf.get_height()
+                    story = font.render(line, True, (255, 255, 255))
+                    screen.blit(story, (25, 25 + y_offset)) # Align text to the left with an x-offset of 50
+                    y_offset += story.get_height()
 
-                lines = ["1.    March", "2.    April", "3.    May", "4.    June", "5.    July"]
-                for line in lines:
-                    txtsurf = font1.render(line, True, (255, 255, 255))
-                    screen.blit(txtsurf, (150, 100 + y_offset))  # Align text to the left with an x-offset of 50
-                    y_offset += txtsurf.get_height()
+                # Month options
+                month_lines = ["1.    March", "2.    April", "3.    May", "4.    June", "5.    July"]
 
-                txtsurf = font1.render("What is your choice?", True, (255, 255, 255))
-                screen.blit(txtsurf, (75, 500))  # Align text to the left with an x-offset of 50
+                # Check for key presses to update the selected month
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_1]:
+                    selected_month = 0  # March
                     print("March selected")
                 elif keys[pygame.K_2]:
+                    selected_month = 1  # April
                     print("April selected")
                 elif keys[pygame.K_3]:
+                    selected_month = 2  # May
                     print("May selected")
                 elif keys[pygame.K_4]:
+                    selected_month = 3  # June
                     print("June selected")
                 elif keys[pygame.K_5]:
+                    selected_month = 4  # July
                     print("July selected")
 
-                # Import saloon cutout image
+                # Draw month options with red selection
+                i = 0  # Index counter for tracking the month
+                for line in month_lines:
+                    if selected_month == i:
+                        color = (255, 0, 0)
+                    else:
+                        color = (255, 255, 255)
+                    months = font1.render(line, True, color)
+                    screen.blit(months, (150, 100 + y_offset))  # Align text to the left with an x-offset of 50
+                    y_offset += months.get_height()
+                    i += 1  # Increment the index
+
+                # Draw the prompt
+                prompt = font1.render("What is your choice?", True, (255, 255, 255))
+                screen.blit(prompt, (75, 500))
+
+                # Draw the saloon image
                 screen.blit(bg_saloon, (625, 175))
 
             # Update the display
