@@ -1,6 +1,6 @@
 import random
 from enum import Enum
-from stats import Stats  # Imports the Stats class
+from stats import *  # Imports the Stats class
 
 
 class RandomEvent(Enum):
@@ -18,8 +18,8 @@ class FoodPoisoning:
 
     def execute(self):
         damage = random.randint(-5, -1)
-        self.stats.set_party_health(damage)
-        return f"You got food poisoning, your health is now: {self.stats.get_party_health()}"
+        self.stats.party_health = damage
+        return f"You got food poisoning, your health is now: {self.stats.party_health}"
 
 
 class Theft:
@@ -28,8 +28,8 @@ class Theft:
 
     def execute(self):
         loss = random.randint(-9, -3)
-        self.stats.set_money(loss)
-        return f"You got robbed, your money is now: {self.stats.get_money()}"
+        self.stats.money = loss
+        return f"You got robbed, your money is now: {self.stats.money}"
 
 
 class Dysentery:
@@ -38,8 +38,8 @@ class Dysentery:
 
     def execute(self):
         damage = random.randint(-10, -5)
-        self.stats.set_party_health(damage)
-        return f"You got dysentery! Your health is now: {self.stats.get_party_health()}"
+        self.stats.party_health = damage
+        return f"You got dysentery! Your health is now: {self.stats.party_health}"
 
 
 class WagonDmg:
@@ -48,8 +48,8 @@ class WagonDmg:
 
     def execute(self):
         damage = random.randint(-7, -2)
-        self.stats.set_wagon_health(damage)
-        return f"Your wagon took damage from poor road conditions, your wagon's health is now: {self.stats.get_wagon_health()}"
+        self.stats.wagon_health = damage
+        return f"Your wagon took damage from poor road conditions, your wagon's health is now: {self.stats.wagon_health}"
 
 
 class Loot:
@@ -58,8 +58,8 @@ class Loot:
 
     def execute(self):
         gold_found = random.randint(1, 10)
-        self.stats.set_money(gold_found)
-        return f"You found a pouch, your money is now: {self.stats.get_money()}"
+        self.stats.money = gold_found
+        return f"You found a pouch, your money is now: {self.stats.money}"
 
 
 # Function to handle events
@@ -78,6 +78,8 @@ def events_occurred(stats):
 
 
 # code to test events
-#if __name__ == "__main__":
-#    stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result
-#    print(events_occurred(stats_instance))  # Print the result of a random event
+# if __name__ == "__main__":
+#     stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result
+#     print(events_occurred(stats_instance))  # Print the result of a random event
+
+
