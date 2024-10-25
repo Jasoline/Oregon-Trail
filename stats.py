@@ -9,9 +9,44 @@ class Stats:
         self.__events_occurred = 0  # Number of events occurred
         self.__deaths = 0  # Number of deaths
         self.__money = 0  # Amount of money
-        self.__supplies = []  # List of supplies
+        self.__ammo = 0  # Amount of ammunition
+        self.__food = 0  # Amount of food
+        self.__oxen = 0  # Amount of oxen
+        self.__clothing = 0  # Amount of clothing
         self.__wagon_health = 100  # Health of the wagon
 
+    @property
+    def ammo(self):
+        # Return the amount of ammunition
+        return self.__ammo
+    @ammo.setter
+    def ammo(self, ammo):
+        # Set the amount of ammunition
+            self.__ammo += ammo
+    @property
+    def food(self):
+        # Return the amount of food
+        return self.__food
+    @food.setter
+    def food(self, food):
+        # Set the amount of food
+            self.__food += food
+    @property
+    def clothing(self):
+        # Return the amount of clothing
+        return self.__clothing
+    @clothing.setter
+    def clothing(self, clothing):
+        # Set the amount of clothing
+            self.__clothing += clothing
+    @property
+    def oxen(self):
+        # Return the amount of oxen
+        return self.__oxen
+    @oxen.setter
+    def oxen(self, oxen):
+        # Set the amount of oxen
+            self.__oxen += oxen
     @property
     def days_passed(self):
         # Return the number of days passed
@@ -60,10 +95,7 @@ class Stats:
     @party_health.setter
     def party_health(self, health):
         # Set the health of the party
-        if health > 0:
-            self.__party_health += health
-        else:
-            self.__party_health -= health
+        self.__party_health += health
 
     @property
     def events_occurred(self):
@@ -93,10 +125,7 @@ class Stats:
     @money.setter
     def money(self, money):
         # Set the amount of money
-        if money > 0:
             self.__money += money
-        else:
-            self.__money -= money
 
     @property
     def supplies(self):
@@ -111,20 +140,12 @@ class Stats:
     @wagon_health.setter
     def wagon_health(self, health):
         # Set the health of the wagon
-        if health > 0:
             self.__wagon_health += health
-        else:
-            self.__wagon_health -= health
+        
 
     def update_death(self):
         # Update the number of deaths
         self.__deaths += 1
-
-    def update_supplies(self, supply):
-        # Update the quantity of a supply
-        if supply in self.__supplies:
-            if self.__supplies[supply] > 0:
-                self.__supplies[supply] -= 1
 
     def increase_day(self):
         # Increase the current day of the month
@@ -142,4 +163,5 @@ class Stats:
                 self.__month += 1
         else:
             self.__day += 1
+
 
