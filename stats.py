@@ -3,8 +3,10 @@ class Stats:
         # Initialize instance variables
         self.__distance_travelled = 0  # Distance travelled by the party
         self.__days_passed = 0  # Number of days passed
-        self.__day = 0  # Current day of the month
+        self.__day = 1,  # Current day of the month
         self.__month = 0  # Current month
+        self.__month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+                              "October", "November", "December"]
         self.__party_health = 100  # Health of the party
         self.__events_occurred = 0  # Number of events occurred
         self.__deaths = 0  # Number of deaths
@@ -14,7 +16,10 @@ class Stats:
         self.__oxen = 0  # Amount of oxen
         self.__clothing = 0  # Amount of clothing
         self.__wagon_health = 100  # Health of the wagon
-
+    @property
+    def month_name(self):
+        # Return the list of month names
+        return self.__month_names[self.__month - 1]
     @property
     def ammo(self):
         # Return the amount of ammunition
