@@ -44,17 +44,27 @@ class main:
 
         # Play button helper
         def click_play():
+            prev_screen.append( screen_helper['screen'])
             screen_helper['screen'] = 'char_select'
-            prev_screen.append('title')
+            
+            
 
         # Back button helper
         def click_back():
             screen_helper['screen'] = prev_screen.pop()
+            if screen_helper['screen'] == 'title':
+                back_button.hide()
+                next_button.hide()
+            
 
         def click_next():
+            prev_screen.append(screen_helper['screen'])
             if screen_helper['screen'] == 'char_select':
-                prev_screen.append('char_select')
                 screen_helper['screen'] = 'month_select'
+                next_button.hide()
+            elif screen_helper['screen'] == 'month_select':
+                screen_helper['screen'] = 'store'
+            
 
         # Import button functionality
         credit_message = create_credit_message(screen)
@@ -65,7 +75,7 @@ class main:
         selection_message = create_selection_message(screen)
         name_inputs = create_name_inputs(screen)
         name_nums = create_name_num(screen)
-
+        
         # Game loop
         running = True
         while running:
@@ -81,16 +91,14 @@ class main:
                 screen.blit(bg_title, (0, 0))
 
                 # Draw the buttons
-                play_button.listen(events)
+                
                 play_button.show()
-                play_button.draw()
-                quit_button.listen(events)
-                quit_button.draw()
+                credit_message.show()
                 quit_button.show()
-                back_button.hide()
-                next_button.hide()
-
+                play_button.draw()
+                quit_button.draw()
                 credit_message.draw()
+                
 
             # Render character selection screen
             elif screen_helper['screen'] == 'char_select':
@@ -98,12 +106,15 @@ class main:
                 screen.blit(bg_char, (0, 0))
 
                 # Draw the buttons
+                credit_message.hide()
                 play_button.hide()
                 quit_button.hide()
                 back_button.show()
-                back_button.draw()
                 next_button.show()
+                back_button.draw()
                 next_button.draw()
+                
+                
 
                 selection_message.draw()
                 for num in name_nums:
@@ -188,6 +199,43 @@ class main:
                 # Draw the saloon image
                 screen.blit(bg_saloon, (625, 175))
 
+            elif screen_helper['screen'] == 'store':
+                screen.fill((0, 0, 0))
+                # Draw the inventory items
+                inventory_items = [
+                    "Oxen",
+                    "Food",
+                    "Clothing",
+                    "Ammunition",
+                    "Spare Parts"
+                ]
+
+                # Load font
+                font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+
+                # Calculate the y-coordinate for the first item
+                y_offset = 175
+
+                # Draw each inventory item on a separate line
+                for item in inventory_items:
+                    item_text = font.render(item, True, (255, 255, 255))
+                    item_x = 25  # Calculate the x-coordinate to center the text
+                    screen.blit(item_text, (item_x, y_offset))
+                    y_offset += item_text.get_height() + 10  # Add some spacing between items
+            elif screen_helper['screen'] == 'game':
+                screen.fill((0, 0, 0))
+
+                # Draw the buttons
+                back_button.draw()
+                # Draw the stats
+                stats_text = font.render(f"Month: {self.stats.month_name}  Day: {self.stats.day}", True, (255, 255, 255))
+                screen.blit(stats_text, (width - stats_text.get_width() - 25, 25))
+
+                # Load fonts
+                font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+                font1 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
+
+                
             # Update the display
             pygame.display.flip()
 
