@@ -24,11 +24,40 @@ class main:
         pygame.display.set_caption("Oregon Trail")
 
         # Load background images
-        bg_title = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'oregontrail.jpg')).convert()
-        bg_char = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'oregonchar.png')).convert()
+        bg_title = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'oregontrail.jpg')).convert()
+        bg_char = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'oregonchar.png')).convert()
         bg_char = pygame.transform.scale(bg_char, (1280, 720))
-        bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'pixelsaloon1.png')).convert()
+        bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'pixelsaloon1.png')).convert()
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
+
+        # Implement music
+        '''                V insert file names V
+        music_background = 
+        music_travel = 
+        music_event = 
+        music_death = 
+        music_win = 
+        music_lose = 
+        music_shop = '''
+
+        # Music helper(s)
+        def load_music(type):
+            pygame.mixer.music.load(type)
+
+        def ever_music():
+            pygame.mixer.music.play(-1)
+
+        def loop_music():
+            pygame.mixer.music.play(1)
+
+        def pause_music():
+            pygame.mixer.music.pause()
+        
+        def unpause_music():
+            pygame.mixer.music.unpause()
+        
+        def stop_music():
+            pygame.mixer.music.stop()
 
         # Screen helper
         screen_helper = {'screen': 'title'}
@@ -44,10 +73,8 @@ class main:
 
         # Play button helper
         def click_play():
-            prev_screen.append( screen_helper['screen'])
+            prev_screen.append(screen_helper['screen'])
             screen_helper['screen'] = 'char_select'
-            
-            
 
         # Back button helper
         def click_back():
@@ -55,7 +82,6 @@ class main:
             if screen_helper['screen'] == 'title':
                 back_button.hide()
                 next_button.hide()
-            
 
         def click_next():
             prev_screen.append(screen_helper['screen'])
@@ -64,7 +90,6 @@ class main:
                 next_button.hide()
             elif screen_helper['screen'] == 'month_select':
                 screen_helper['screen'] = 'store'
-            
 
         # Import button functionality
         credit_message = create_credit_message(screen)
@@ -75,7 +100,7 @@ class main:
         selection_message = create_selection_message(screen)
         name_inputs = create_name_inputs(screen)
         name_nums = create_name_num(screen)
-        
+
         # Game loop
         running = True
         while running:
@@ -91,14 +116,14 @@ class main:
                 screen.blit(bg_title, (0, 0))
 
                 # Draw the buttons
-                
+
                 play_button.show()
                 credit_message.show()
                 quit_button.show()
                 play_button.draw()
                 quit_button.draw()
                 credit_message.draw()
-                
+
 
             # Render character selection screen
             elif screen_helper['screen'] == 'char_select':
@@ -113,8 +138,6 @@ class main:
                 next_button.show()
                 back_button.draw()
                 next_button.draw()
-                
-                
 
                 selection_message.draw()
                 for num in name_nums:
@@ -129,13 +152,15 @@ class main:
                 screen.fill((0, 0, 0))
 
                 # Draw the buttons
-                
+
                 back_button.draw()
-                
+
                 # Load fonts
-               
-                font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
-                font1 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
+
+                font = pygame.font.Font(
+                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+                font1 = pygame.font.Font(
+                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
 
                 # Story text
                 lines = [
@@ -148,7 +173,7 @@ class main:
                 y_offset = 0
                 for line in lines:
                     story = font.render(line, True, (255, 255, 255))
-                    screen.blit(story, (25, 25 + y_offset)) # Align text to the left with an x-offset of 50
+                    screen.blit(story, (25, 25 + y_offset))  # Align text to the left with an x-offset of 50
                     y_offset += story.get_height()
 
                 # Month options
@@ -187,10 +212,9 @@ class main:
                     screen.blit(months, (150, 100 + y_offset))  # Align text to the left with an x-offset of 50
                     y_offset += months.get_height()
                     i += 1  # Increment the index
-                    
+
                 # example how to display stats variables
                 # screen.blit(font.render(str(self.stats.month), True, color), (50, 600))
-                
 
                 # Draw the prompt
                 prompt = font1.render("What is your choice?", True, (255, 255, 255))
@@ -211,7 +235,8 @@ class main:
                 ]
 
                 # Load font
-                font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+                font = pygame.font.Font(
+                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
 
                 # Calculate the y-coordinate for the first item
                 y_offset = 175
@@ -228,14 +253,16 @@ class main:
                 # Draw the buttons
                 back_button.draw()
                 # Draw the stats
-                stats_text = font.render(f"Month: {self.stats.month_name}  Day: {self.stats.day}", True, (255, 255, 255))
+                stats_text = font.render(f"Month: {self.stats.month_name}  Day: {self.stats.day}", True,
+                                         (255, 255, 255))
                 screen.blit(stats_text, (width - stats_text.get_width() - 25, 25))
 
                 # Load fonts
-                font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
-                font1 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
+                font = pygame.font.Font(
+                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+                font1 = pygame.font.Font(
+                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
 
-                
             # Update the display
             pygame.display.flip()
 
