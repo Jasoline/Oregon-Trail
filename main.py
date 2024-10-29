@@ -45,10 +45,10 @@ class main:
             pygame.mixer.music.load(type)
 
         def ever_music():
-            pygame.mixer.music.play(-1)
+            pygame.mixer.music.play(1)
 
         def loop_music():
-            pygame.mixer.music.play(1)
+            pygame.mixer.music.play(-1)  #it's -1 to loop and 1 to just play it once
 
         def pause_music():
             pygame.mixer.music.pause()
