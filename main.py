@@ -22,8 +22,6 @@ class main:
 
         # Set window title
         pygame.display.set_caption("Oregon Trail")
-        pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
-        pygame.mixer.music.play(-1)
 
         # Load background images
         bg_title = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'oregontrail.jpg')).convert()
@@ -32,35 +30,39 @@ class main:
         bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'pixelsaloon1.png')).convert()
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
 
-        '''
         # Implement music
-        music_background = pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
-        music_travel = pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
-        music_event = pygame.mixer.music.load(os.path.join("songs", "The Long Road [ ezmp3.cc ].mp3"))
-        music_death = pygame.mixer.music.load(os.path.join("songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
-        music_win = pygame.mixer.music.load(os.path.join("songs", "Trail's End [ ezmp3.cc ].mp3"))
-        music_lose = pygame.mixer.music.load(os.path.join("songs", "Winter's Approach [ ezmp3.cc ].mp3"))
-        music_shop = pygame.mixer.music.load(os.path.join("songs", "Around The Campfire [ ezmp3.cc ].mp3"))
+        music_title = (os.path.join("songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
+        music_travel = (os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
+        music_event = (os.path.join("songs", "The Long Road [ ezmp3.cc ].mp3"))
+        music_death = (os.path.join("songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
+        music_win = (os.path.join("songs", "Trail's End [ ezmp3.cc ].mp3"))
+        music_lose = (os.path.join("songs", "Winter's Approach [ ezmp3.cc ].mp3"))
+        music_shop = (os.path.join("songs", "Around The Campfire [ ezmp3.cc ].mp3"))
+
+        # Load fonts
+        font = pygame.font.Font(
+            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+        font1 = pygame.font.Font(
+            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
 
         # Music helper(s)
-        def load_music(type):
-            pygame.mixer.music.load(type)
+        def load_music(music):
+            pygame.mixer.music.load(music)
 
         def ever_music():
-            pygame.mixer.music.play(1)
+            pygame.mixer.music.play(-1)
 
         def loop_music():
-            pygame.mixer.music.play(-1)  #it's -1 to loop and 1 to just play it once
+            pygame.mixer.music.play(1)  #it's -1 to loop and 1 to just play it once
 
         def pause_music():
             pygame.mixer.music.pause()
-        
+
         def unpause_music():
             pygame.mixer.music.unpause()
-        
-        def stop_music():
-            pygame.mixer.music.stop()
-        '''
+
+        def unload_music():
+            pygame.mixer.music.unload()
 
         # Screen helper
         screen_helper = {'screen': 'title'}
@@ -117,16 +119,17 @@ class main:
             if screen_helper['screen'] == 'title':
                 screen.fill((0, 0, 0))
                 screen.blit(bg_title, (0, 0))
+                # Play music on repeat
+                load_music(music_title)
+                ever_music()
 
                 # Draw the buttons
-
                 play_button.show()
                 credit_message.show()
                 quit_button.show()
                 play_button.draw()
                 quit_button.draw()
                 credit_message.draw()
-
 
             # Render character selection screen
             elif screen_helper['screen'] == 'char_select':
@@ -150,20 +153,10 @@ class main:
                 for input_box in name_inputs:
                     input_box.draw()
 
+            # Render month selection screen
             elif screen_helper['screen'] == 'month_select':
-
                 screen.fill((0, 0, 0))
-
-                # Draw the buttons
-
                 back_button.draw()
-
-                # Load fonts
-
-                font = pygame.font.Font(
-                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
-                font1 = pygame.font.Font(
-                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
 
                 # Story text
                 lines = [
@@ -226,11 +219,13 @@ class main:
                 # Draw the saloon image
                 screen.blit(bg_saloon, (625, 175))
 
+            # Render store screen
             elif screen_helper['screen'] == 'store':
                 screen.fill((0, 0, 0))
-                pygame.mixer.music.unload()
-                pygame.mixer.music.load(os.path.join("songs", "Around The Campfire [ ezmp3.cc ].mp3"))
-                pygame.mixer.music.play(-1)
+                # Stop music and play different
+                unload_music()
+                load_music(music_shop)
+                ever_music()
                 # Draw the inventory items
                 inventory_items = [
                     "Oxen",
@@ -239,10 +234,6 @@ class main:
                     "Ammunition",
                     "Spare Parts"
                 ]
-
-                # Load font
-                font = pygame.font.Font(
-                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
 
                 # Calculate the y-coordinate for the first item
                 y_offset = 175
@@ -253,24 +244,23 @@ class main:
                     item_x = 25  # Calculate the x-coordinate to center the text
                     screen.blit(item_text, (item_x, y_offset))
                     y_offset += item_text.get_height() + 10  # Add some spacing between items
+
+            # Render game screen
             elif screen_helper['screen'] == 'game':
                 screen.fill((0, 0, 0))
-                pygame.mixer.music.unload()
-                pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
-                pygame.mixer.music.play(-1)
+
+                # Stop music and play different
+                unload_music()
+                load_music(music_travel)
+                ever_music()
 
                 # Draw the buttons
                 back_button.draw()
+                
                 # Draw the stats
                 stats_text = font.render(f"Month: {self.stats.month_name}  Day: {self.stats.day}", True,
                                          (255, 255, 255))
                 screen.blit(stats_text, (width - stats_text.get_width() - 25, 25))
-
-                # Load fonts
-                font = pygame.font.Font(
-                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
-                font1 = pygame.font.Font(
-                    os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
 
             # Update the display
             pygame.display.flip()
