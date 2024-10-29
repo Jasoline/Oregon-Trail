@@ -31,14 +31,13 @@ class main:
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
 
         # Implement music
-        '''                V insert file names V
-        music_background = 
-        music_travel = 
-        music_event = 
-        music_death = 
-        music_win = 
-        music_lose = 
-        music_shop = '''
+        music_background = pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3")
+        music_travel = pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3")
+        music_event = pygame.mixer.music.load(os.path.join("songs", "The Long Road [ ezmp3.cc ].mp3")
+        music_death = pygame.mixer.music.load(os.path.join("songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
+        music_win = pygame.mixer.music.load(os.path.join("songs", "Trail's End [ ezmp3.cc ].mp3")
+        music_lose = pygame.mixer.music.load(os.path.join("songs", "Winter's Approach [ ezmp3.cc ].mp3")
+        music_shop = pygame.mixer.music.load(os.path.join("songs", "Around The Campfire [ ezmp3.cc ].mp3")
 
         # Music helper(s)
         def load_music(type):
