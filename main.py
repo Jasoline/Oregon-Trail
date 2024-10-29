@@ -22,6 +22,8 @@ class main:
 
         # Set window title
         pygame.display.set_caption("Oregon Trail")
+        pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
+        pygame.mixer.music.play(-1)
 
         # Load background images
         bg_title = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'oregontrail.jpg')).convert()
@@ -30,6 +32,7 @@ class main:
         bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'pixelsaloon1.png')).convert()
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
 
+        '''
         # Implement music
         music_background = pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
         music_travel = pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
@@ -57,6 +60,7 @@ class main:
         
         def stop_music():
             pygame.mixer.music.stop()
+        '''
 
         # Screen helper
         screen_helper = {'screen': 'title'}
@@ -224,6 +228,8 @@ class main:
 
             elif screen_helper['screen'] == 'store':
                 screen.fill((0, 0, 0))
+                pygame.mixer.music.load(os.path.join("songs", "Around The Campfire [ ezmp3.cc ].mp3"))
+                pygame.mixer.music.play(-1)
                 # Draw the inventory items
                 inventory_items = [
                     "Oxen",
@@ -248,6 +254,8 @@ class main:
                     y_offset += item_text.get_height() + 10  # Add some spacing between items
             elif screen_helper['screen'] == 'game':
                 screen.fill((0, 0, 0))
+                pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
+                pygame.mixer.music.play(-1)
 
                 # Draw the buttons
                 back_button.draw()
