@@ -228,6 +228,7 @@ class main:
 
             elif screen_helper['screen'] == 'store':
                 screen.fill((0, 0, 0))
+                pygame.mixer.music.unload()
                 pygame.mixer.music.load(os.path.join("songs", "Around The Campfire [ ezmp3.cc ].mp3"))
                 pygame.mixer.music.play(-1)
                 # Draw the inventory items
@@ -254,6 +255,7 @@ class main:
                     y_offset += item_text.get_height() + 10  # Add some spacing between items
             elif screen_helper['screen'] == 'game':
                 screen.fill((0, 0, 0))
+                pygame.mixer.music.unload()
                 pygame.mixer.music.load(os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
                 pygame.mixer.music.play(-1)
 
