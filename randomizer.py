@@ -64,6 +64,9 @@ class Loot:
 
 # Function to handle events
 def events_occurred(stats):
+    pygame.mixer.music.unload()
+    pygame.mixer.music.load(os.path.join("songs", "The Long Road [ ezmp3.cc ].mp3"))
+    pygame.mixer.music.play(-1)
     event_number = random.randint(1, 5) 
     if event_number == 1:
         return FoodPoisoning(stats).execute()

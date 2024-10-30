@@ -25,11 +25,45 @@ class main:
         pygame.display.set_caption("Oregon Trail")
 
         # Load background images
-        bg_title = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'oregontrail.jpg')).convert()
-        bg_char = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'oregonchar.png')).convert()
+        bg_title = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'oregontrail.jpg')).convert()
+        bg_char = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'oregonchar.png')).convert()
         bg_char = pygame.transform.scale(bg_char, (1280, 720))
-        bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__),'images', 'pixelsaloon1.png')).convert()
+        bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'pixelsaloon1.png')).convert()
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
+
+        # Implement music
+        music_title = (os.path.join("songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
+        music_travel = (os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
+        music_event = (os.path.join("songs", "The Long Road [ ezmp3.cc ].mp3"))
+        music_death = (os.path.join("songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
+        music_win = (os.path.join("songs", "Trail's End [ ezmp3.cc ].mp3"))
+        music_lose = (os.path.join("songs", "Winter's Approach [ ezmp3.cc ].mp3"))
+        music_shop = (os.path.join("songs", "Around The Campfire [ ezmp3.cc ].mp3"))
+
+        # Load fonts
+        font = pygame.font.Font(
+            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+        font1 = pygame.font.Font(
+            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
+
+        # Music helper(s)
+        def load_music(music):
+            pygame.mixer.music.load(music)
+
+        def ever_music():
+            pygame.mixer.music.play(-1)
+
+        def loop_music():
+            pygame.mixer.music.play(1)  #it's -1 to loop and 1 to just play it once
+
+        def pause_music():
+            pygame.mixer.music.pause()
+
+        def unpause_music():
+            pygame.mixer.music.unpause()
+
+        def unload_music():
+            pygame.mixer.music.unload()
 
         # Screen helper
         screen_helper = {'screen': 'game'}
@@ -47,7 +81,7 @@ class main:
 
         # Play button helper
         def click_play():
-            prev_screen.append( screen_helper['screen'])
+            prev_screen.append(screen_helper['screen'])
             screen_helper['screen'] = 'char_select'
             credit_message.hide()
             play_button.hide()
@@ -61,7 +95,6 @@ class main:
             
             next_button.hide()
             back_button.hide()
-            
 
         def click_next():
             prev_screen.append(screen_helper['screen'])
@@ -76,7 +109,6 @@ class main:
 
             back_button.hide()
             next_button.hide()
-            
 
         # Import button functionality
         credit_message = create_credit_message(screen)
@@ -114,16 +146,17 @@ class main:
             if screen_helper['screen'] == 'title':
                 screen.fill((0, 0, 0))
                 screen.blit(bg_title, (0, 0))
+                # Play music on repeat
+                load_music(music_title)
+                ever_music()
 
                 # Draw the buttons
-                
                 play_button.show()
                 credit_message.show()
                 quit_button.show()
                 play_button.draw()
                 quit_button.draw()
                 credit_message.draw()
-                
 
             # Render character selection screen
             elif screen_helper['screen'] == 'char_select':
@@ -135,8 +168,6 @@ class main:
                 next_button.show()
                 back_button.draw()
                 next_button.draw()
-                
-                
 
                 selection_message.draw()
                 for num in name_nums:
@@ -146,12 +177,9 @@ class main:
                 for input_box in name_inputs:
                     input_box.draw()
 
+            # Render month selection screen
             elif screen_helper['screen'] == 'month_select':
-
                 screen.fill((0, 0, 0))
-
-                # Draw the buttons
-                
                 back_button.draw()
                 back_button.show()
                 
@@ -167,7 +195,7 @@ class main:
                 y_offset = 0
                 for line in lines:
                     story = font.render(line, True, (255, 255, 255))
-                    screen.blit(story, (25, 25 + y_offset)) # Align text to the left with an x-offset of 50
+                    screen.blit(story, (25, 25 + y_offset))  # Align text to the left with an x-offset of 50
                     y_offset += story.get_height()
 
                 # Month options
@@ -206,10 +234,9 @@ class main:
                     screen.blit(months, (150, 100 + y_offset))  # Align text to the left with an x-offset of 50
                     y_offset += months.get_height()
                     i += 1  # Increment the index
-                    
+
                 # example how to display stats variables
                 # screen.blit(font.render(str(self.stats.month), True, color), (50, 600))
-                
 
                 # Draw the prompt
                 prompt = font1.render("What is your choice?", True, (255, 255, 255))
@@ -218,6 +245,7 @@ class main:
                 # Draw the saloon image
                 screen.blit(bg_saloon, (625, 175))
 
+            # Render store screen
             elif screen_helper['screen'] == 'store':
                     
                     screen.fill((0, 0, 0))
