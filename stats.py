@@ -10,7 +10,7 @@ class Stats:
         self.__party_health = 100  # Health of the party
         self.__events_occurred = 0  # Number of events occurred
         self.__deaths = 0  # Number of deaths
-        self.__money = 0  # Amount of money
+        self.__money = 1600  # Amount of money
         self.__ammo = 0  # Amount of ammunition
         self.__food = 0  # Amount of food
         self.__oxen = 0  # Amount of oxen
