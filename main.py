@@ -10,10 +10,11 @@ from randomizer import *
 class main:
     def __init__(self):
         self.stats = Stats()
-        
+
     def start(self):
         # Initialize Pygame
         pygame.init()
+        pygame.mixer.init()
 
         # Set window dimensions
         width = 1280
@@ -33,13 +34,14 @@ class main:
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
 
         # Implement music
-        music_title = (os.path.join(os.path.dirname(__file__),"songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
-        music_travel = (os.path.join(os.path.dirname(__file__),"songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
-        music_event = (os.path.join(os.path.dirname(__file__),"songs", "The Long Road [ ezmp3.cc ].mp3"))
-        music_death = (os.path.join(os.path.dirname(__file__),"songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
-        music_win = (os.path.join(os.path.dirname(__file__),"songs", "Trail's End [ ezmp3.cc ].mp3"))
-        music_lose = (os.path.join(os.path.dirname(__file__),"songs", "Winter's Approach [ ezmp3.cc ].mp3"))
-        music_shop = (os.path.join(os.path.dirname(__file__),"songs", "Around The Campfire [ ezmp3.cc ].mp3"))
+        music_title = (
+            os.path.join(os.path.dirname(__file__), "songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
+        music_travel = (os.path.join(os.path.dirname(__file__), "songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
+        music_event = (os.path.join(os.path.dirname(__file__), "songs", "The Long Road [ ezmp3.cc ].mp3"))
+        music_death = (os.path.join(os.path.dirname(__file__), "songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
+        music_win = (os.path.join(os.path.dirname(__file__), "songs", "Trail's End [ ezmp3.cc ].mp3"))
+        music_lose = (os.path.join(os.path.dirname(__file__), "songs", "Winter's Approach [ ezmp3.cc ].mp3"))
+        music_shop = (os.path.join(os.path.dirname(__file__), "songs", "Around The Campfire [ ezmp3.cc ].mp3"))
 
         # Load fonts
         font = pygame.font.Font(
@@ -55,7 +57,7 @@ class main:
             pygame.mixer.music.play(-1)
 
         def loop_music():
-            pygame.mixer.music.play(1)  #it's -1 to loop and 1 to just play it once
+            pygame.mixer.music.play(1)  # it's -1 to loop and 1 to just play it once
 
         def pause_music():
             pygame.mixer.music.pause()
@@ -77,6 +79,7 @@ class main:
         rested = False
         game_event = None
         hunt = None
+
         # Quit button helper
         def close_window():
             nonlocal running
@@ -89,13 +92,11 @@ class main:
             credit_message.hide()
             play_button.hide()
             quit_button.hide()
-        
-            
 
         # Back button helper
         def click_back():
             screen_helper['screen'] = prev_screen.pop()
-            
+
             next_button.hide()
             back_button.hide()
 
@@ -106,16 +107,9 @@ class main:
 
             elif screen_helper['screen'] == 'month_select':
                 screen_helper['screen'] = 'store'
-                pygame.mixer.music.unload()
-                pygame.mixer.music.load(music_shop)
-                pygame.mixer.music.play(-1)
 
             elif screen_helper['screen'] == 'store':
                 screen_helper['screen'] = 'game'
-                pygame.mixer.music.unload()
-                pygame.mixer.music.load(music_travel)
-                pygame.mixer.music.play(-1)
-
 
             back_button.hide()
             next_button.hide()
@@ -133,18 +127,19 @@ class main:
             screen,
             width // 2 - 26, height - 175, 52, 50,  # Centered horizontally and positioned at the bottom
             textColour=(247, 250, 248),
-            font=pygame.font.Font(os.path.join(os.path.dirname(__file__),'images', 'PixelifySans-VariableFont_wght.ttf'), 35),
-            margin=25,
-            colour=(62, 66, 64),
-            radius=5,
-            )
+            font=pygame.font.Font(
+                os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35),
+            margin=25, colour=(62, 66, 64), radius=5,
+        )
 
         # Create the font
-        font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
-        font1 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
-        font2 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 20)
-        load_music(music_title)
-        ever_music()
+        font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'),
+                                25)
+        font1 = pygame.font.Font(
+            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
+        font2 = pygame.font.Font(
+            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 20)
+
         # Game loop
         running = True
         while running:
@@ -158,8 +153,11 @@ class main:
             if screen_helper['screen'] == 'title':
                 screen.fill((0, 0, 0))
                 screen.blit(bg_title, (0, 0))
-                # Play music on repeat
-                
+
+                # Change music
+                if not pygame.mixer.music.get_busy():
+                    load_music(music_title)
+                    ever_music()
 
                 # Draw the buttons
                 play_button.show()
@@ -176,9 +174,7 @@ class main:
 
                 # Draw the buttons
                 back_button.show()
-                next_button.show()
                 back_button.draw()
-                next_button.draw()
 
                 selection_message.draw()
                 for num in name_nums:
@@ -188,13 +184,19 @@ class main:
                 for input_box in name_inputs:
                     input_box.draw()
 
+                # Only allow next if all input is complete
+                if all(input_box.getText() != "" for input_box in name_inputs):
+                    next_button.show()
+                    next_button.draw()
+
+
+
             # Render month selection screen
             elif screen_helper['screen'] == 'month_select':
                 screen.fill((0, 0, 0))
                 back_button.draw()
                 back_button.show()
-                
-                
+
                 # Story text
                 lines = [
                     "It is February of 1852 in Independence, Missouri. Over the past few years you have been hearing",
@@ -258,129 +260,137 @@ class main:
 
             # Render store screen
             elif screen_helper['screen'] == 'store':
-                    
-                    
-                    screen.fill((0, 0, 0))
-                    # Draw the inventory items
-                    back_button.draw()
-                    back_button.show()
-                    inventory_items = [
-                        f"1. Oxen: {self.stats.oxen} ",
-                        f"2. Food: {self.stats.food} ",
-                        f"3. Clothing: {self.stats.clothing} ",
-                        f"4. Ammunition: {self.stats.ammo} ",
-                        f"5. Spare Parts: {self.stats.spare_parts} "
-                    ]
+                screen.fill((0, 0, 0))
 
-                    # Calculate the y-coordinate for the first item
-                    y_offset = 175
-                    # Draw the prompt for the store
-                    prompt = font1.render("What would you like to buy?", True, (255, 255, 255))
-                    screen.blit(prompt, (width // 2 - prompt.get_width() // 2, 100))
-                    
-                    # Draw each inventory item on a separate line
-                    i = 0
-                    for item in inventory_items:
-                        label, value = item.split(': ')[0] + ':', item.split(': ')[1]
-                        if selected_item == i:
-                            label_color = (255, 0, 0)
-                            value_color = (255, 0, 0)
-                        else:
-                            label_color = (255, 255, 255)
-                            value_color = (255, 255, 255)
-                        
-                        label_text = font.render(label, True, label_color)
-                        value_text = font.render(value, True, value_color)
-                        
-                        label_x = 500  # Align labels to the left
-                        value_x = width - 550 - value_text.get_width()  # Align values to the right
-                        
-                        screen.blit(label_text, (label_x, y_offset + 50))
-                        screen.blit(value_text, (value_x, y_offset + 50))
-                        
-                        y_offset += label_text.get_height() + 10  # Add some spacing between items
-                        i += 1  # Increment the index
+                # Draw the inventory items
+                back_button.draw()
+                back_button.show()
+                inventory_items = [
+                    f"1. Oxen: {self.stats.oxen} ",
+                    f"2. Food(lbs): {self.stats.food} ",
+                    f"3. Clothing(sets): {self.stats.clothing} ",
+                    f"4. Ammunition: {self.stats.ammo} ",
+                    f"5. Spare Parts: {self.stats.spare_parts} "
+                ]
 
+                # Change music
+                unload_music()
+                if not pygame.mixer.music.get_busy():
+                    load_music(music_shop)
+                    ever_music()
 
-                        
+                # Calculate the y-coordinate for the first item
+                y_offset = 175
+                # Draw the prompt for the store
+                prompt = font1.render("What would you like to buy?", True, (255, 255, 255))
+                screen.blit(prompt, (width // 2 - prompt.get_width() // 2, 100))
 
-                    # Get user input for each item
+                # Draw each inventory item on a separate line
+                i = 0
+                for item in inventory_items:
+                    label, value = item.split(': ')[0] + ':', item.split(': ')[1]
+                    if selected_item == i:
+                        label_color = (255, 0, 0)
+                        value_color = (255, 0, 0)
+                    else:
+                        label_color = (255, 255, 255)
+                        value_color = (255, 255, 255)
 
-                    keys = pygame.key.get_pressed()
-                    if keys[pygame.K_1] and selected_item == None:
-                        selected_item = 0
-                    elif keys[pygame.K_2] and selected_item == None:
-                        selected_item = 1
-                    elif keys[pygame.K_3] and selected_item == None:
-                        selected_item = 2
-                    elif keys[pygame.K_4] and selected_item == None:
-                        selected_item = 3
-                    elif keys[pygame.K_5] and selected_item == None:
-                        selected_item = 4
-                    elif event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_RETURN:
-                            selected_item = None
+                    label_text = font.render(label, True, label_color)
+                    value_text = font.render(value, True, value_color)
 
-                            user_input = TextBox(
-                            screen,
-                            width // 2 - 26, height - 175, 52, 50,  # Centered horizontally and positioned at the bottom
-                            textColour=(247, 250, 248),
-                            font=pygame.font.Font(os.path.join(os.path.dirname(__file__),'images', 'PixelifySans-VariableFont_wght.ttf'), 35),
-                            margin=25,
-                            colour=(62, 66, 64),
-                            radius=5,
-                            )
-                    if len(user_input.getText()) == 2:
-                        text = user_input.getText()[0:2]
+                    label_x = 500  # Align labels to the left
+                    value_x = width - 550 - value_text.get_width()  # Align values to the right
+
+                    screen.blit(label_text, (label_x, y_offset + 50))
+                    screen.blit(value_text, (value_x, y_offset + 50))
+
+                    y_offset += label_text.get_height() + 10  # Add some spacing between items
+                    i += 1  # Increment the index
+
+                # Get user input for each item
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_1] and selected_item == None:
+                    selected_item = 0
+                elif keys[pygame.K_2] and selected_item == None:
+                    selected_item = 1
+                elif keys[pygame.K_3] and selected_item == None:
+                    selected_item = 2
+                elif keys[pygame.K_4] and selected_item == None:
+                    selected_item = 3
+                elif keys[pygame.K_5] and selected_item == None:
+                    selected_item = 4
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:
+                        selected_item = None
+
                         user_input = TextBox(
                             screen,
                             width // 2 - 26, height - 175, 52, 50,  # Centered horizontally and positioned at the bottom
                             textColour=(247, 250, 248),
-                            font=pygame.font.Font(os.path.join(os.path.dirname(__file__),'images', 'PixelifySans-VariableFont_wght.ttf'), 35),
-                            margin=25,
-                            colour=(62, 66, 64),
-                            radius=5,
-                            )
-                        user_input.setText(text)
-                    input_prompt = font1.render("Enter quantity here:", True, (255, 255, 255))
-                    screen.blit(input_prompt, (width // 2 - input_prompt.get_width() // 2, height - 225))
-                    user_input.draw()
-                    user_input_text = user_input.getText()
-                    if user_input_text == "":
-                        if selected_item == 0:
-                            self.stats.oxen = 0
-                        elif selected_item == 1:
-                            self.stats.food = 0
-                        elif selected_item == 2:
-                            self.stats.clothing = 0
-                        elif selected_item == 3:
-                            self.stats.ammo = 0
-                        elif selected_item == 4:
-                            self.stats.spare_parts = 0
-                    if user_input_text.isdigit():
-                        if selected_item == 0:
-                            self.stats.oxen = int(user_input_text)
-                        elif selected_item == 1:
-                            self.stats.food = int(user_input_text)
-                        elif selected_item == 2:
-                            self.stats.clothing = int(user_input_text)
-                        elif selected_item == 3:
-                            self.stats.ammo = int(user_input_text)
-                        elif selected_item == 4:
-                            self.stats.spare_parts = int(user_input_text)
-                    if self.stats.oxen != 0 and self.stats.food != 0 and self.stats.clothing != 0 and self.stats.ammo != 0 and self.stats.spare_parts != 0:
-                        next_button.show()
-                        next_button.draw()
+                            font=pygame.font.Font(
+                                os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'),
+                                35),
+                            margin=25, colour=(62, 66, 64), radius=5,
+                        )
+                if len(user_input.getText()) == 2:
+                    text = user_input.getText()[0:2]
+                    user_input = TextBox(
+                        screen,
+                        width // 2 - 26, height - 175, 52, 50,  # Centered horizontally and positioned at the bottom
+                        textColour=(247, 250, 248),
+                        font=pygame.font.Font(
+                            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'),
+                            35),
+                        margin=25, colour=(62, 66, 64), radius=5,
+                    )
+                    user_input.setText(text)
+                input_prompt = font1.render("Enter quantity here:", True, (255, 255, 255))
+                screen.blit(input_prompt, (width // 2 - input_prompt.get_width() // 2, height - 225))
+                user_input.draw()
+                user_input_text = user_input.getText()
+                if user_input_text == "":
+                    if selected_item == 0:
+                        self.stats.oxen = 0
+                    elif selected_item == 1:
+                        self.stats.food = 0
+                    elif selected_item == 2:
+                        self.stats.clothing = 0
+                    elif selected_item == 3:
+                        self.stats.ammo = 0
+                    elif selected_item == 4:
+                        self.stats.spare_parts = 0
+                if user_input_text.isdigit():
+                    if selected_item == 0:
+                        self.stats.oxen = int(user_input_text)
+                    elif selected_item == 1:
+                        self.stats.food = int(user_input_text)
+                    elif selected_item == 2:
+                        self.stats.clothing = int(user_input_text)
+                    elif selected_item == 3:
+                        self.stats.ammo = int(user_input_text)
+                    elif selected_item == 4:
+                        self.stats.spare_parts = int(user_input_text)
+                if self.stats.oxen != 0 and self.stats.food != 0 and self.stats.clothing != 0 and self.stats.ammo != 0 and self.stats.spare_parts != 0:
+                    next_button.show()
+                    next_button.draw()
 
+            # Render game screen
             elif screen_helper['screen'] == 'game':
                 screen.fill((0, 0, 0))
                 stats_text = font.render(f"{self.stats.month_name} {self.stats.day}, 1848", True, (255, 255, 255))
                 screen.blit(stats_text, ((width - stats_text.get_width()) // 2, 25))
 
-                lines = ["1. Continue on the trail", "2. Check supplies", "3. Stop to rest", "4. Hunt for food", "5. Attempt to trade", "6. Purchase supplies", "7. Quit"]
+                # Change music
+                unload_music()
+                if not pygame.mixer.music.get_busy():
+                    load_music(music_travel)
+                    ever_music()
+
+                lines = ["1. Continue on the trail", "2. Check supplies", "3. Stop to rest", "4. Hunt for food",
+                         "5. Attempt to trade", "6. Purchase supplies", "7. Quit"]
 
                 # Display the options
-                
                 if pygame.key.get_pressed()[pygame.K_1]:
                     selected_choice = 1
                 elif pygame.key.get_pressed()[pygame.K_2]:
@@ -426,7 +436,7 @@ class main:
                                 if random.randint(0, 9) <= 5:
                                     hunt = random.randint(10, 90)
                                     self.stats.food += hunt
-                                    
+
                                 else:
                                     hunt = None
                             else:
@@ -441,9 +451,7 @@ class main:
                             their_trade = random.randint(1, 5)
                             while your_trade == their_trade:
                                 their_trade = random.randint(1, 5)
-                            
 
-                
                             selected_choice = None
                         elif selected_choice == 6:
                             prev_screen.append(screen_helper['screen'])
@@ -452,22 +460,19 @@ class main:
                         elif selected_choice == 7:
                             running = False
                             selected_choice = None
-               
-                    
 
-                
                 y_offset = 100
                 for line in lines:
                     if str(selected_choice) == line[0]:
                         option_text = font.render(line, True, (255, 0, 0))
-                        screen.blit(option_text, (width // 2 - 300 // 2, y_offset+100))
+                        screen.blit(option_text, (width // 2 - 300 // 2, y_offset + 100))
                         y_offset += option_text.get_height() + 10
                     else:
                         option_text = font.render(line, True, (255, 255, 255))
-                        screen.blit(option_text, (width // 2 - 300 // 2, y_offset+100))
+                        screen.blit(option_text, (width // 2 - 300 // 2, y_offset + 100))
                         y_offset += option_text.get_height() + 10
-                    
-                
+
+
             elif screen_helper['screen'] == 'display_supplies':
                 screen.fill((0, 0, 0))
                 # Draw "Your Supplies" title
@@ -477,8 +482,6 @@ class main:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN:
                             screen_helper['screen'] = prev_screen.pop()
-                
-               
 
                 # Display supplies
                 supplies_text = [
@@ -503,18 +506,16 @@ class main:
 
                     y_offset += label_text.get_height() + 10
                 # Draw the buttons
-                
-            
+
+
             elif screen_helper['screen'] == 'travel':
                 screen.fill((0, 0, 0))
+
                 # Display travel information
-                
                 if game_event is None:
                     message_text = font2.render("You continue on the trail", True, (255, 255, 255))
                 message_text = font2.render(game_event, True, (255, 255, 255))
-                
-                    
-                
+
                 screen.blit(message_text, (width // 2 - message_text.get_width() // 2, 600))
                 travel_text = [
                     f"Date: {self.stats.month_name} {self.stats.day}, {self.stats.year}",
@@ -526,7 +527,7 @@ class main:
                 y_offset = 100
                 for line in travel_text:
                     travel_info = font.render(line, True, (255, 255, 255))
-                    screen.blit(travel_info, (width // 2 - 300 // 2, y_offset+100))
+                    screen.blit(travel_info, (width // 2 - 300 // 2, y_offset + 100))
                     y_offset += travel_info.get_height() + 10
                 for event in events:
                     if event.type == pygame.KEYDOWN:
@@ -552,7 +553,8 @@ class main:
                         if event.key == pygame.K_RETURN and user_input_text.isdigit():
                             for i in range(int(user_input_text)):
                                 screen.fill((0, 0, 0))
-                                date_text = font.render(f"{self.stats.month_name} {self.stats.day}, {self.stats.year}", True, (255, 255, 255))
+                                date_text = font.render(f"{self.stats.month_name} {self.stats.day}, {self.stats.year}",
+                                                        True, (255, 255, 255))
                                 screen.blit(date_text, (width // 2 - date_text.get_width() // 2, 200))
                                 self.stats.days_passed += 1
                                 self.stats.day += 1
@@ -560,33 +562,30 @@ class main:
                                 pygame.display.flip()
                                 pygame.time.wait(1000)
                                 rested = True
-                            
-                                
+
                             user_input = TextBox(
-                            screen,
-                            width // 2 - 26, height - 175, 52, 50,  # Centered horizontally and positioned at the bottom
-                            textColour=(247, 250, 248),
-                            font=pygame.font.Font(os.path.join(os.path.dirname(__file__),'images', 'PixelifySans-VariableFont_wght.ttf'), 35),
-                            margin=25,
-                            colour=(62, 66, 64),
-                            radius=5,
+                                screen,
+                                width // 2 - 26, height - 175, 52, 50,
+                                # Centered horizontally and positioned at the bottom
+                                textColour=(247, 250, 248),
+                                font=pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images',
+                                                                   'PixelifySans-VariableFont_wght.ttf'), 35),
+                                margin=25, colour=(62, 66, 64), radius=5,
                             )
                             user_input.hide()
                             events.clear()
-                
+
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN and rested:
                             screen_helper['screen'] = prev_screen.pop()
                             rested = False
 
-                
-               
-                    
                 # Display the date
-                date_text = font.render(f"{self.stats.month_name} {self.stats.day}, {self.stats.year}", True, (255, 255, 255))
+                date_text = font.render(f"{self.stats.month_name} {self.stats.day}, {self.stats.year}", True,
+                                        (255, 255, 255))
                 screen.blit(date_text, (width // 2 - date_text.get_width() // 2, 200))
-            
+
             elif screen_helper['screen'] == 'hunt':
                 screen.fill((0, 0, 0))
                 if hunt is None:
