@@ -18,7 +18,7 @@ class FoodPoisoning:
 
     def execute(self):
         damage = random.randint(-5, -1)
-        self.stats.party_health = damage
+        self.stats.party_health += damage
         return f"You got food poisoning, your health is now: {self.stats.party_health}"
 
 
@@ -28,7 +28,7 @@ class Theft:
 
     def execute(self):
         loss = random.randint(-9, -3)
-        self.stats.money = loss
+        self.stats.money += loss
         return f"You got robbed, your money is now: {self.stats.money}"
 
 
@@ -38,7 +38,7 @@ class Dysentery:
 
     def execute(self):
         damage = random.randint(-10, -5)
-        self.stats.party_health = damage
+        self.stats.party_health += damage
         return f"You got dysentery! Your health is now: {self.stats.party_health}"
 
 
@@ -48,7 +48,7 @@ class WagonDmg:
 
     def execute(self):
         damage = random.randint(-7, -2)
-        self.stats.wagon_health = damage
+        self.stats.wagon_health += damage
         return f"Your wagon took damage from poor road conditions, your wagon's health is now: {self.stats.wagon_health}"
 
 
@@ -58,7 +58,7 @@ class Loot:
 
     def execute(self):
         gold_found = random.randint(1, 10)
-        self.stats.money = gold_found
+        self.stats.money += gold_found
         return f"You found a pouch, your money is now: {self.stats.money}"
 
 
@@ -78,8 +78,8 @@ def events_occurred(stats):
 
 
 # code to test events
-# if __name__ == "__main__":
-#     stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result
-#     print(events_occurred(stats_instance))  # Print the result of a random event
+if __name__ == "__main__":
+    stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result
+    print(events_occurred(stats_instance))  # Print the result of a random event
 
 
