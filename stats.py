@@ -4,7 +4,7 @@ class Stats:
         self.__distance_travelled = 0  # Distance travelled by the party
         self.__days_passed = 0  # Number of days passed
         self.__day = 1  # Current day of the month
-        self.__month = 1  # Current month
+        self.__month = 0  # Current month
         self.__month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         self.__year = 1848  # Current year
         self.__party_health = 100  # Health of the party
