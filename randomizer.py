@@ -67,7 +67,7 @@ def events_occurred(stats):
     # pygame.mixer.music.unload()
     # pygame.mixer.music.load(os.path.join("songs", "The Long Road [ ezmp3.cc ].mp3"))
     # pygame.mixer.music.play(-1)
-    event_number = random.randint(1, 5) 
+    event_number = random.randint(1, 5)
     if event_number == 1:
         return FoodPoisoning(stats).execute()
     elif event_number == 2:
@@ -84,5 +84,4 @@ def events_occurred(stats):
 # if __name__ == "__main__":
     # stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result
     # print(events_occurred(stats_instance))  # Print the result of a random event
-
 
