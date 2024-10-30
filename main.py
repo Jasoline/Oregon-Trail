@@ -4,6 +4,7 @@ import os
 from buttons import *
 from stats import *
 import random
+from randomizer import *
 
 
 class main:
@@ -74,6 +75,8 @@ class main:
         selected_item = None  # Start with no item selected
         selected_choice = None  # Start with no choice selected
         rested = False
+        game_event = None
+        hunt = None
         # Quit button helper
         def close_window():
             nonlocal running
@@ -139,6 +142,7 @@ class main:
         # Create the font
         font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
         font1 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
+        font2 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 20)
         load_music(music_title)
         ever_music()
         # Game loop
@@ -261,11 +265,11 @@ class main:
                     back_button.draw()
                     back_button.show()
                     inventory_items = [
-                        f"1 Oxen: {self.stats.oxen} ",
-                        f"2 Food: {self.stats.food} ",
-                        f"3 Clothing: {self.stats.clothing} ",
-                        f"4 Ammunition: {self.stats.ammo} ",
-                        f"5 Spare Parts: {self.stats.spare_parts} "
+                        f"1. Oxen: {self.stats.oxen} ",
+                        f"2. Food: {self.stats.food} ",
+                        f"3. Clothing: {self.stats.clothing} ",
+                        f"4. Ammunition: {self.stats.ammo} ",
+                        f"5. Spare Parts: {self.stats.spare_parts} "
                     ]
 
                     # Calculate the y-coordinate for the first item
@@ -396,6 +400,10 @@ class main:
                         if selected_choice == 1:
                             prev_screen.append(screen_helper['screen'])
                             screen_helper['screen'] = 'travel'
+                            if random.randint(0, 10) <= 2:
+                                game_event = events_occurred(self.stats)
+                            else:
+                                game_event = None
                             self.stats.days_passed += 1
                             self.stats.day += 1
                             self.stats.distance_travelled += random.randint(10, 15)
@@ -407,6 +415,42 @@ class main:
                         elif selected_choice == 3:
                             prev_screen.append(screen_helper['screen'])
                             screen_helper['screen'] = 'rest'
+                            selected_choice = None
+                        elif selected_choice == 4:
+                            prev_screen.append(screen_helper['screen'])
+                            screen_helper['screen'] = 'hunt'
+                            if self.stats.ammo >= 10:
+                                self.stats.ammo -= 10
+                                self.stats.days_passed += 1
+                                self.stats.day += 1
+                                if random.randint(0, 9) <= 5:
+                                    hunt = random.randint(10, 90)
+                                    self.stats.food += hunt
+                                    
+                                else:
+                                    hunt = None
+                            else:
+                                hunt = -1
+                            selected_choice = None
+                        elif selected_choice == 5:
+                            prev_screen.append(screen_helper['screen'])
+                            screen_helper['screen'] = 'trade'
+                            self.stats.days_passed += 1
+                            self.stats.day += 1
+                            your_trade = random.randint(1, 5)
+                            their_trade = random.randint(1, 5)
+                            while your_trade == their_trade:
+                                their_trade = random.randint(1, 5)
+                            
+
+                
+                            selected_choice = None
+                        elif selected_choice == 6:
+                            prev_screen.append(screen_helper['screen'])
+                            screen_helper['screen'] = 'store'
+                            selected_choice = None
+                        elif selected_choice == 7:
+                            running = False
                             selected_choice = None
                
                     
@@ -442,7 +486,8 @@ class main:
                     f"Food: {self.stats.food} lbs",
                     f"Clothing: {self.stats.clothing} sets",
                     f"Ammunition: {self.stats.ammo} rounds",
-                    f"Spare Parts: {self.stats.spare_parts}"
+                    f"Spare Parts: {self.stats.spare_parts}",
+                    f"Money: {self.stats.money}"
                 ]
 
                 max_label_width = max(font.size(line.split(':')[0] + ': ')[0] for line in supplies_text)
@@ -464,11 +509,19 @@ class main:
                 screen.fill((0, 0, 0))
                 # Display travel information
                 
+                if game_event is None:
+                    message_text = font2.render("You continue on the trail", True, (255, 255, 255))
+                message_text = font2.render(game_event, True, (255, 255, 255))
+                
+                    
+                
+                screen.blit(message_text, (width // 2 - message_text.get_width() // 2, 600))
                 travel_text = [
                     f"Date: {self.stats.month_name} {self.stats.day}, {self.stats.year}",
                     f"Distance travelled: {self.stats.distance_travelled} miles",
                     f"Health: {self.stats.party_health}",
-                    f"Wagon health: {self.stats.wagon_health}"
+                    f"Wagon health: {self.stats.wagon_health}",
+                    f"Money: {self.stats.money}"
                 ]
                 y_offset = 100
                 for line in travel_text:
@@ -478,6 +531,7 @@ class main:
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN:
+                            game_event = False
                             screen_helper['screen'] = prev_screen.pop()
             elif screen_helper['screen'] == 'rest':
                 screen.fill((0, 0, 0))
@@ -519,6 +573,7 @@ class main:
                             )
                             user_input.hide()
                             events.clear()
+                
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN and rested:
@@ -531,7 +586,20 @@ class main:
                 # Display the date
                 date_text = font.render(f"{self.stats.month_name} {self.stats.day}, {self.stats.year}", True, (255, 255, 255))
                 screen.blit(date_text, (width // 2 - date_text.get_width() // 2, 200))
-                
+            
+            elif screen_helper['screen'] == 'hunt':
+                screen.fill((0, 0, 0))
+                if hunt is None:
+                    hunt_text = font1.render("You didn't find anything", True, (255, 255, 255))
+                elif hunt == -1:
+                    hunt_text = font1.render("You don't have enough ammo", True, (255, 255, 255))
+                else:
+                    hunt_text = font1.render(f"You found {hunt} lbs of food", True, (255, 255, 255))
+                screen.blit(hunt_text, (width // 2 - hunt_text.get_width() // 2, 100))
+                for event in events:
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_RETURN:
+                            screen_helper['screen'] = prev_screen.pop()
             # Update the display
             pygame.display.flip()
 
