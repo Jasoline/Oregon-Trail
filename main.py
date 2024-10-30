@@ -32,13 +32,13 @@ class main:
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
 
         # Implement music
-        music_title = (os.path.join("songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
-        music_travel = (os.path.join("songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
-        music_event = (os.path.join("songs", "The Long Road [ ezmp3.cc ].mp3"))
-        music_death = (os.path.join("songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
-        music_win = (os.path.join("songs", "Trail's End [ ezmp3.cc ].mp3"))
-        music_lose = (os.path.join("songs", "Winter's Approach [ ezmp3.cc ].mp3"))
-        music_shop = (os.path.join("songs", "Around The Campfire [ ezmp3.cc ].mp3"))
+        music_title = (os.path.join(os.path.dirname(__file__),"songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
+        music_travel = (os.path.join(os.path.dirname(__file__),"songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
+        music_event = (os.path.join(os.path.dirname(__file__),"songs", "The Long Road [ ezmp3.cc ].mp3"))
+        music_death = (os.path.join(os.path.dirname(__file__),"songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
+        music_win = (os.path.join(os.path.dirname(__file__),"songs", "Trail's End [ ezmp3.cc ].mp3"))
+        music_lose = (os.path.join(os.path.dirname(__file__),"songs", "Winter's Approach [ ezmp3.cc ].mp3"))
+        music_shop = (os.path.join(os.path.dirname(__file__),"songs", "Around The Campfire [ ezmp3.cc ].mp3"))
 
         # Load fonts
         font = pygame.font.Font(
@@ -103,9 +103,16 @@ class main:
 
             elif screen_helper['screen'] == 'month_select':
                 screen_helper['screen'] = 'store'
+                pygame.mixer.music.unload()
+                pygame.mixer.music.load(music_shop)
+                pygame.mixer.music.play(-1)
 
             elif screen_helper['screen'] == 'store':
                 screen_helper['screen'] = 'game'
+                pygame.mixer.music.unload()
+                pygame.mixer.music.load(music_travel)
+                pygame.mixer.music.play(-1)
+
 
             back_button.hide()
             next_button.hide()
@@ -132,7 +139,8 @@ class main:
         # Create the font
         font = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
         font1 = pygame.font.Font(os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
-
+        load_music(music_title)
+        ever_music()
         # Game loop
         running = True
         while running:
@@ -147,8 +155,7 @@ class main:
                 screen.fill((0, 0, 0))
                 screen.blit(bg_title, (0, 0))
                 # Play music on repeat
-                load_music(music_title)
-                ever_music()
+                
 
                 # Draw the buttons
                 play_button.show()
@@ -247,6 +254,7 @@ class main:
 
             # Render store screen
             elif screen_helper['screen'] == 'store':
+                    
                     
                     screen.fill((0, 0, 0))
                     # Draw the inventory items
