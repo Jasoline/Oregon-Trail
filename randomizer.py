@@ -6,7 +6,7 @@ from stats import *  # Imports the Stats class
 class RandomEvent(Enum):
     FOOD_POISONING = 1
     THEFT = 2
-    DYSENTERY = 3
+    BITE = 3
     WAGON_DMG = 4
     LOOT = 5
 
@@ -32,14 +32,14 @@ class Theft:
         return f"You got robbed, you lost {-1*loss} money. your money is now: {self.stats.money}"
 
 
-class Dysentery:
+class Bite:
     def __init__(self, stats):
         self.stats = stats
 
     def execute(self):
         damage = random.randint(-10, -5)
         self.stats.party_health += damage
-        return f"You got dysentery! You took {-1*damage} damage. Your health is now: {self.stats.party_health}"
+        return f"One of your animals bit you! You took {-1*damage} damage. Your health is now: {self.stats.party_health}"
 
 
 class WagonDmg:
@@ -73,7 +73,7 @@ def events_occurred(stats):
     elif event_number == 2:
         return Theft(stats).execute()
     elif event_number == 3:
-        return Dysentery(stats).execute()
+        return Bite(stats).execute()
     elif event_number == 4:
         return WagonDmg(stats).execute()
     elif event_number == 5:
