@@ -49,7 +49,7 @@ class WagonDmg:
     def execute(self):
         damage = random.randint(-7, -2)
         self.stats.wagon_health += damage
-        return f"Your wagon took damage from poor road conditions, your wagon took {-1*damage} damage. Your wagon's health is now: {self.stats.wagon_health}"
+        return f"Your wagon took {-1*damage} damage from poor road conditions. Your wagon's health is now: {self.stats.wagon_health}"
 
 
 class Loot:

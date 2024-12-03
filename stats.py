@@ -180,10 +180,7 @@ class Stats:
         # Set the amount of money
         self.__money = money
 
-    @property
-    def supplies(self):
-        # Return the list of supplies
-        return self.__supplies
+  
 
     @property
     def wagon_health(self):
