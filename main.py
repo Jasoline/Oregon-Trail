@@ -71,7 +71,7 @@ class Main:
             pygame.mixer.music.unload()
 
         # Screen helper
-        screen_helper = {'screen': 'game'}
+        screen_helper = {'screen': 'title'}
         
         prev_screen = []
 
