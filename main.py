@@ -32,6 +32,15 @@ class Main:
         bg_char = pygame.transform.scale(bg_char, (1280, 720))
         bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'pixelsaloon1.png')).convert()
         bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
+        bg_independence = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'independ.png')).convert()
+        bg_kearney = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'kearney.png')).convert()
+        bg_chimney = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'chimney.png')).convert()
+        bg_laramie = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'laramie.png')).convert()
+        bg_bridger = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'bridger.png')).convert()
+        bg_hall = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'hall.png')).convert()
+        bg_boise = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'boise.png')).convert()
+        bg_mountain = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'mountain.png')).convert()
+        bg_willamette = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'willame.png')).convert()
 
         # Implement music
         music_title = (
