@@ -17,7 +17,7 @@ class FoodPoisoning:
         self.stats = stats
 
     def execute(self):
-        damage = random.randint(-5, -1)*2
+        damage = random.randint(-5, -1)*1
         self.stats.party_health = max(0, self.stats.party_health + damage)
         return f"You got food poisoning, you took {-1*damage} damage. Your health is now: {self.stats.party_health}"
 
@@ -37,7 +37,7 @@ class Bite:
         self.stats = stats
 
     def execute(self):
-        damage = random.randint(-10, -5)*2
+        damage = random.randint(-10, -5)*1
         self.stats.party_health = max(0, self.stats.party_health + damage)
         return f"One of your animals bit you! You took {-1*damage} damage. Your health is now: {self.stats.party_health}"
 
@@ -47,8 +47,11 @@ class WagonDmg:
         self.stats = stats
 
     def execute(self):
-        damage = random.randint(-7, -2)*2
-        self.stats.wagon_health += damage
+        if self.stats.spare_parts > 0:
+            self.stats.spare_parts -= 1
+            return f"One of your wagon parts broke. You have {self.stats.spare_parts} spare parts left."
+        damage = random.randint(-7, -2)*5
+        self.stats.wagon_health = max(self.stats.wagon_health+damage,0)
         return f"Your wagon took {-1*damage} damage from poor road conditions. Your wagon's health is now: {self.stats.wagon_health}"
 
 
