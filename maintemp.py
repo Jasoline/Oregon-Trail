@@ -80,7 +80,7 @@ class Main:
             pygame.mixer.music.unload()
 
         # Screen helper
-        screen_helper = {'screen': 'title'}
+        screen_helper = {'screen': 'game'}
 
         prev_screen = []
 
@@ -143,6 +143,7 @@ class Main:
             pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'mountain.png')).convert(),
             pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'willame.png')).convert()
         ]
+        locationindex = 0
         next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
         prev_choice = None
         # Quit button helper
@@ -659,9 +660,10 @@ class Main:
                     else:
                         self.stats.distance_travelled += random.randint(10, 15)
                     if next_location != self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]:
-                        if self.stats.distance_travelled == 0 or 302 or 552 or 638 or 1055 or 1169 or 1443 or 1568 or 1800:
+                        if self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)] == 0 or 302 or 552 or 638 or 1055 or 1169 or 1443 or 1568 or 1800:
                             prev_screen.append(screen_helper['screen'])
                             screen_helper['screen'] = 'location'
+                            next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
                         else:
                             game_event = f"You have reached {next_location}"
                             message_text = [game_event,  "Press Space to continue"]
@@ -707,15 +709,18 @@ class Main:
 
             elif screen_helper['screen'] == 'location':
                 screen.fill((0, 0, 0))
-                screen.blit(location_images[i], (0, 0))
-                i += 1
-                prev_screen.append(screen_helper['screen'])
+                screen.blit(location_images[locationindex], (0, 0))
+                
+                
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_SPACE:
                             game_event = False
                             if prev_screen:
+                                print(prev_screen)
                                 screen_helper['screen'] = prev_screen.pop()
+                                locationindex += 1
+                                
 
             elif screen_helper['screen'] == 'rest':
                 screen.fill((0, 0, 0))
