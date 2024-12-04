@@ -80,7 +80,7 @@ class Main:
             pygame.mixer.music.unload()
 
         # Screen helper
-        screen_helper = {'screen': 'title'}
+        screen_helper = {'screen': 'game'}
         
         prev_screen = []
 
@@ -634,16 +634,26 @@ class Main:
                     selected_choice = None
                     self.stats.days_passed += 1
                     self.stats.day += 1
-                    self.stats.party_health = max(self.stats.party_health - random.randint(1, 5), 0)
+                    self.stats.food = max(self.stats.food - random.randint(10, 20), 0)
+                    
+                    
                     if random.randint(0, 10) <= 2:
-                        
+                        if self.stats.food == 0:
+                            damage = random.randint(5, 15)  
+                            self.stats.party_health = max(self.stats.party_health - damage, 0)
                         game_event = events_occurred(self.stats)
                         message_text = [game_event,  "Press Space to continue"]   
+                        if self.stats.food == 0:
+                            message_text.insert(0, f"You are starving and have lost {damage} health")
                         
                     else:
                         message_text = ["You continue on the trail"]
                         game_event = None
-            
+                        if self.stats.food == 0:
+                            damage = random.randint(5, 15)  
+                            self.stats.party_health = max(self.stats.party_health - damage, 0)
+                            message_text.insert(0, f"You are starving and have lost {damage} health")
+                
                     if self.stats.distance_travelled + random.randint(10, 15) >= 1800:
                         self.stats.distance_travelled = 1800
                     else:
@@ -652,6 +662,7 @@ class Main:
                         game_event = f"You have reached {next_location}"   
                         message_text = [game_event,  "Press Space to continue"]  
                         next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]   
+                    
                 else:
                     for event in events:
                         if event.type == pygame.KEYDOWN:
