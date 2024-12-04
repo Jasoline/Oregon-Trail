@@ -17,7 +17,7 @@ class FoodPoisoning:
         self.stats = stats
 
     def execute(self):
-        damage = random.randint(-5, -1)
+        damage = random.randint(-5, -1)*2
         self.stats.party_health = max(0, self.stats.party_health + damage)
         return f"You got food poisoning, you took {-1*damage} damage. Your health is now: {self.stats.party_health}"
 
@@ -27,7 +27,7 @@ class Theft:
         self.stats = stats
 
     def execute(self):
-        loss = random.randint(-9, -3)
+        loss = random.randint(-9, -3)*2
         self.stats.money += loss
         return f"You got robbed, you lost {-1*loss} money. your money is now: {self.stats.money}"
 
@@ -37,7 +37,7 @@ class Bite:
         self.stats = stats
 
     def execute(self):
-        damage = random.randint(-10, -5)
+        damage = random.randint(-10, -5)*2
         self.stats.party_health = max(0, self.stats.party_health + damage)
         return f"One of your animals bit you! You took {-1*damage} damage. Your health is now: {self.stats.party_health}"
 
@@ -47,7 +47,7 @@ class WagonDmg:
         self.stats = stats
 
     def execute(self):
-        damage = random.randint(-7, -2)
+        damage = random.randint(-7, -2)*2
         self.stats.wagon_health += damage
         return f"Your wagon took {-1*damage} damage from poor road conditions. Your wagon's health is now: {self.stats.wagon_health}"
 
@@ -57,7 +57,7 @@ class Loot:
         self.stats = stats
 
     def execute(self):
-        gold_found = random.randint(1, 10)
+        gold_found = random.randint(1, 10)*2
         self.stats.money += gold_found
         return f"You found a pouch, you found {gold_found} money. Your money is now: {self.stats.money}"
 

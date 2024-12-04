@@ -132,6 +132,17 @@ class Main:
             1800,  # Willamette Valley, Oregon
             1850
         ]
+        location_images = {
+            102 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'independ.png')).convert(),
+            552 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'kearney.png')).convert(),
+            638 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'chimney.png')).convert(),
+            828 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'laramie.png')).convert(),
+            1169 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'bridger.png')).convert(),
+            1283 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'hall.png')).convert(),
+            1443 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'boise.png')).convert(),
+            1568 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'mountain.png')).convert(),
+            1801 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'willame.png')).convert()
+        }
         next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
         prev_choice = None
         # Quit button helper
@@ -628,7 +639,7 @@ class Main:
                 prev_choice = 1
                 
                     
-            
+                
                 # Display travel information
                 if game_event is None:
                     selected_choice = None
@@ -637,7 +648,7 @@ class Main:
                     self.stats.food = max(self.stats.food - random.randint(10, 20), 0)
                     
                     
-                    if random.randint(0, 10) <= 2:
+                    if random.randint(0, 10) <= 1:
                         if self.stats.food == 0:
                             damage = random.randint(5, 15)  
                             self.stats.party_health = max(self.stats.party_health - damage, 0)
@@ -659,9 +670,14 @@ class Main:
                     else:
                         self.stats.distance_travelled += random.randint(10, 15)
                     if next_location != self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]:
-                        game_event = f"You have reached {next_location}"   
-                        message_text = [game_event,  "Press Space to continue"]  
-                        next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]   
+                        if min(dist for dist in total_distances if dist >= self.stats.distance_travelled) in location_images:
+                            prev_screen.append(screen_helper['screen'])
+                            screen_helper['screen'] = 'location'
+                            next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
+                        else:
+                            game_event = f"You have reached {next_location}"
+                            message_text = [game_event,  "Press Space to continue"]
+                            next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
                     
                 else:
                     for event in events:
@@ -703,10 +719,28 @@ class Main:
                             game_event = False
                             if prev_screen:
                                 screen_helper['screen'] = prev_screen.pop()
-                               
+                if self.stats.party_health == 0:
+                    screen_helper['screen'] = 'gameover'
+                    unload_music()
+                    if not pygame.mixer.music.get_busy():
+                        load_music(music_lose)
+                        ever_music()               
                 pygame.display.flip()
                 pygame.time.wait(1000)
+            elif screen_helper['screen'] == 'location':
+                screen.fill((0, 0, 0))
                 
+                screen.blit(location_images[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)], (0, 0))
+                
+                
+                for event in events:
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_SPACE:
+                            game_event = False
+                            if prev_screen:
+                                print(prev_screen)
+                                screen_helper['screen'] = prev_screen.pop()
+                                    
             elif screen_helper['screen'] == 'rest':
                 screen.fill((0, 0, 0))
                 if not rested:
@@ -800,7 +834,13 @@ class Main:
                     screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 200))
             elif screen_helper['screen'] == 'gameover':
                 screen.fill((0, 0, 0))
-                gameover_text = font1.render("You have no oxen left. Game Over.", True, (255, 255, 255))
+                text = "Game over."
+                
+                if self.stats.oxen == 0:
+                    text += " You have no oxen left."
+                elif self.stats.party_health == 0:
+                    text += " Your party has died."
+                gameover_text = font1.render(text, True, (255, 255, 255))
                 screen.blit(gameover_text, (width // 2 - gameover_text.get_width() // 2, height // 2))
                 pygame.display.flip()
             elif screen_helper['screen'] == 'win':

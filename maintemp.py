@@ -130,20 +130,20 @@ class Main:
             1568, # Blue Mountains
             1700, # The Dalles
             1800,  # Willamette Valley, Oregon
-            1850
+            1801
         ]
-        location_images = [
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'independ.png')).convert(),
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'kearney.png')).convert(),
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'chimney.png')).convert(),
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'laramie.png')).convert(),
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'bridger.png')).convert(),
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'hall.png')).convert(),
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'boise.png')).convert(),
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'mountain.png')).convert(),
-            pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'willame.png')).convert()
-        ]
-        locationindex = 0
+        location_images = {
+            102 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'independ.png')).convert(),
+            552 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'kearney.png')).convert(),
+            638 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'chimney.png')).convert(),
+            828 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'laramie.png')).convert(),
+            1169 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'bridger.png')).convert(),
+            1283 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'hall.png')).convert(),
+            1443 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'boise.png')).convert(),
+            1568 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'mountain.png')).convert(),
+            1801 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'willame.png')).convert()
+        }
+        
         next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
         prev_choice = None
         # Quit button helper
@@ -659,8 +659,9 @@ class Main:
                         self.stats.distance_travelled = 1800
                     else:
                         self.stats.distance_travelled += random.randint(10, 15)
+                    
                     if next_location != self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]:
-                        if self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)] == 0 or 302 or 552 or 638 or 1055 or 1169 or 1443 or 1568 or 1800:
+                        if min(dist for dist in total_distances if dist >= self.stats.distance_travelled) in location_images:
                             prev_screen.append(screen_helper['screen'])
                             screen_helper['screen'] = 'location'
                             next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
@@ -709,7 +710,8 @@ class Main:
 
             elif screen_helper['screen'] == 'location':
                 screen.fill((0, 0, 0))
-                screen.blit(location_images[locationindex], (0, 0))
+                
+                screen.blit(location_images[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)], (0, 0))
                 
                 
                 for event in events:
@@ -719,7 +721,7 @@ class Main:
                             if prev_screen:
                                 print(prev_screen)
                                 screen_helper['screen'] = prev_screen.pop()
-                                locationindex += 1
+                                
                                 
 
             elif screen_helper['screen'] == 'rest':
