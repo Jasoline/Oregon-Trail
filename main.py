@@ -649,22 +649,37 @@ class Main:
                     
                     
                     if random.randint(0, 10) <= 1:
+                        
                         if self.stats.food == 0:
                             damage = random.randint(5, 15)  
                             self.stats.party_health = max(self.stats.party_health - damage, 0)
+                        if self.stats.clothing < 4:
+                            self.stats.party_health =  max(self.stats.party_health-4-self.stats.clothing,0)
                         game_event = events_occurred(self.stats)
+                        if self.stats.oxen == 0:
+                            screen_helper['screen'] = 'gameover'
                         message_text = [game_event,  "Press Space to continue"]   
+                        if self.stats.wagon_health == 0:
+                            screen_helper['screen'] = 'gameover'
+                        if self.stats.clothing < 4:
+                            message_text.insert(0, f"You do not have sufficent clothing, lose {(4-self.stats.clothing)} health")
                         if self.stats.food == 0:
                             message_text.insert(0, f"You are starving and have lost {damage} health")
+                        
                         
                     else:
                         message_text = ["You continue on the trail"]
                         game_event = None
+                        if self.stats.oxen == 0:
+                            screen_helper['screen'] = 'gameover'
+                        if self.stats.clothing < 4:
+                            self.stats.party_health -=   4-self.stats.clothing
+                            message_text.insert(0, f"You do not have sufficent clothing, lose {(4-self.stats.clothing)} health")
                         if self.stats.food == 0:
                             damage = random.randint(5, 15)  
                             self.stats.party_health = max(self.stats.party_health - damage, 0)
                             message_text.insert(0, f"You are starving and have lost {damage} health")
-                
+                        
                     if self.stats.distance_travelled + random.randint(10, 15) >= 1800:
                         self.stats.distance_travelled = 1800
                     else:
@@ -808,9 +823,11 @@ class Main:
             elif screen_helper['screen'] == 'trade':   
                 
                 screen.fill((0, 0, 0))
-                trade_text = font1.render(f"Do you want to trade {yourrng} of your {trade_options[your_trade][0]} for {theirrng} of their {trade_options[their_trade][0]} Y/N", True, (255, 255, 255))
+                trade_text = font1.render(f"Do you want to trade {yourrng} of your {trade_options[your_trade][0]} for {theirrng} of their {trade_options[their_trade][0]}", True, (255, 255, 255))
                 screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 100))
-                
+                if not getattr(self.stats, trade_options[your_trade][0]) >= yourrng:
+                    trade_text = font1.render("You don't have enough to trade", True, (255, 255, 255))
+                    screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 200))
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_y:
@@ -819,9 +836,7 @@ class Main:
                                 setattr(self.stats, trade_options[your_trade][0], getattr(self.stats, trade_options[your_trade][0]) - yourrng)
                                 setattr(self.stats, trade_options[their_trade][0], getattr(self.stats, trade_options[their_trade][0]) + theirrng)
                                 screen_helper['screen'] = prev_screen.pop()
-                            else:
-                                trade_text = font1.render("You don't have enough to trade", True, (255, 255, 255))
-                                screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 200))
+                
                         elif event.key == pygame.K_n:
                             screen_helper['screen'] = prev_screen.pop()
                             seen = {}
@@ -840,6 +855,8 @@ class Main:
                     text += " You have no oxen left."
                 elif self.stats.party_health == 0:
                     text += " Your party has died."
+                elif self.stats.wagon_health == 0:
+                    text += " Your wagon has broken down."
                 gameover_text = font1.render(text, True, (255, 255, 255))
                 screen.blit(gameover_text, (width // 2 - gameover_text.get_width() // 2, height // 2))
                 pygame.display.flip()
