@@ -5,3 +5,5 @@ __pycache__/oregon_test.cpython-313.pyc
 __pycache__/randomizer.cpython-313.pyc
 __pycache__/stats.cpython-313.pyc
 __pycache__/unittest.cpython-313.pyc
+.coverage
+.DS_Store
