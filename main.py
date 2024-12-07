@@ -115,6 +115,9 @@ class Main:
         hunt = None
         seen = {}
         cost = 0
+        travel_text = ''
+        yourrng = None
+        theirrng = None
         store = {'oxen': 0, 'food': 0,
                  'clothing': 0, 'ammo': 0, 'spare_parts': 0}
         self.total_distances = {
