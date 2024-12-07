@@ -115,7 +115,7 @@ class Main:
         hunt = None
         seen = {}
         cost = 0
-        store = {'oxen': 0, 'food': 0, 
+        store = {'oxen': 0, 'food': 0,
                  'clothing': 0, 'ammo': 0, 'spare_parts': 0}
         self.total_distances = {
             0: "Independence, Missouri",
@@ -135,7 +135,7 @@ class Main:
             1700: "The Dalles",
             1800: "Willamette Valley, Oregon",
             1803: ""
-            
+
         }
         total_distances = [
             0,    # Independence, Missouri
@@ -146,41 +146,40 @@ class Main:
             638,  # Fort Laramie
             828,  # Independence Rock
             930,  # South Pass
-            1055, # Fort Bridger
+            1055,  # Fort Bridger
             987,  # Green River Crossing
-            1169, # Fort Hall
-            1283, # Snake River Crossing
-            1443, # Fort Boise
-            1568, # Blue Mountains
-            1700, # The Dalles
+            1169,  # Fort Hall
+            1283,  # Snake River Crossing
+            1443,  # Fort Boise
+            1568,  # Blue Mountains
+            1700,  # The Dalles
             1800,  # Willamette Valley, Oregon
             1803
-            
+
         ]
         location_images = {
-            0 : pygame.image.load(os.path.join(
+            0: pygame.image.load(os.path.join(
                 dir, 'images', 'independ.png')).convert(),
-            552 : pygame.image.load(os.path.join(
+            552: pygame.image.load(os.path.join(
                 dir, 'images', 'kearney.png')).convert(),
-            638 : pygame.image.load(os.path.join(
+            638: pygame.image.load(os.path.join(
                 dir, 'images', 'chimney.png')).convert(),
-            828 : pygame.image.load(os.path.join(
+            828: pygame.image.load(os.path.join(
                 dir, 'images', 'laramie.png')).convert(),
-            1169 : pygame.image.load(os.path.join(
+            1169: pygame.image.load(os.path.join(
                 dir, 'images', 'bridger.png')).convert(),
-            1283 : pygame.image.load(os.path.join(
+            1283: pygame.image.load(os.path.join(
                 dir, 'images', 'hall.png')).convert(),
-            1568 : pygame.image.load(os.path.join(
+            1568: pygame.image.load(os.path.join(
                 dir, 'images', 'boise.png')).convert(),
-            1700 : pygame.image.load(os.path.join(
+            1700: pygame.image.load(os.path.join(
                 dir, 'images', 'mountain.png')).convert(),
-            1802 : pygame.image.load(os.path.join(
+            1802: pygame.image.load(os.path.join(
                 dir, 'images', 'willame.png')).convert()
         }
-        next_location = self.total_distances[min((dist 
-            for dist in total_distances
-            if dist > self.stats.distance_travelled), default=None)]
+        next_location = self.total_distances[min((dist for dist in total_distances if dist > self.stats.distance_travelled), default=None)]
         prev_choice = None
+
         # Quit button helper
         def close_window():
             nonlocal running
@@ -214,14 +213,11 @@ class Main:
                     if key == 'ammo':
                         setattr(self.stats, key,
                                 getattr(self.stats, key) + value * 20)
-                    else: 
-                        setattr(self.stats, key, 
+                    else:
+                        setattr(self.stats, key,
                                 getattr(self.stats, key) + value)
                     store[key] = 0
                 self.stats.money -= cost
-                
-                
-
             back_button.hide()
             next_button.hide()
 
@@ -244,7 +240,7 @@ class Main:
         # Game loop
         running = True
         while running:
-            
+
             # Handle events
             events = pygame.event.get()
             for event in events:
@@ -287,7 +283,7 @@ class Main:
                     input_box.draw()
 
                 # Only allow next if all input is complete
-                if all(input_box.getText() != "" 
+                if all(input_box.getText() != ""
                        for input_box in name_inputs):
                     next_button.show()
                     next_button.draw()
@@ -337,7 +333,7 @@ class Main:
                 if self.stats.month != 0:
                     next_button.show()
                     next_button.draw()
-                    
+
                 # Draw month options with red selection
                 i = 0  # Index counter for tracking the month
                 for line in month_lines:
@@ -383,7 +379,7 @@ class Main:
 
                 # Calculate the y-coordinate for the first item
                 y_offset = 175
-                
+
                 # Draw the prompt for the store
                 prompt = font1.render(f"What would you like to buy? You have ${self.stats.money}", True, (255, 255, 255))
                 screen.blit(prompt, (width // 2 - prompt.get_width() // 2, 100))
@@ -401,15 +397,10 @@ class Main:
 
                     label_text = font.render(label, True, label_color)
                     value_text = font.render(value, True, value_color)
-
                     label_x = (width - label_text.get_width() - 20) // 2  # Center labels
                     value_x = label_x + label_text.get_width() + 20  # Center values next to labels
-
-                    
-
                     screen.blit(label_text, (label_x, y_offset + 50))
                     screen.blit(value_text, (value_x, y_offset + 50))
-
                     y_offset += label_text.get_height() + 10  # Add some spacing between items
                     i += 1  # Increment the index
 
@@ -433,26 +424,23 @@ class Main:
                             screen,
                             width // 2 - 50, height - 175, 100, 50,  # Centered horizontally and positioned at the bottom
                             textColour=(247, 250, 248),
-                            font=font1, margin=25, colour=(62, 66, 64), radius=5,
-                        )
-                        
+                            font=font1, margin=25, colour=(62, 66, 64), radius=5)
+
                 if len(user_input.getText()) == 2 and (selected_item == 0 or selected_item == 2 or selected_item == 3):
                     text = user_input.getText()[0:2]
                     user_input = TextBox(
                         screen,
                         width // 2 - 50, height - 175, 100, 50,  # Centered horizontally and positioned at the bottom
                         textColour=(247, 250, 248),
-                        font=font1, margin=25, colour=(62, 66, 64), radius=5,
-                    )
+                        font=font1, margin=25, colour=(62, 66, 64), radius=5)
                     user_input.setText(text)
-                elif len(user_input.getText()) == 4 and selected_item == 1 :
+                elif len(user_input.getText()) == 4 and selected_item == 1:
                     text = user_input.getText()[0:4]
                     user_input = TextBox(
                         screen,
                         width // 2 - 50, height - 175, 100, 50,  # Centered horizontally and positioned at the bottom
                         textColour=(247, 250, 248),
-                        font=font1, margin=25, colour=(62, 66, 64), radius=5,
-                    )
+                        font=font1, margin=25, colour=(62, 66, 64), radius=5)
                     user_input.setText(text)
                 elif len(user_input.getText()) == 1 and selected_item == 4:
                     text = user_input.getText()[0:1]
@@ -460,19 +448,15 @@ class Main:
                         screen,
                         width // 2 - 50, height - 175, 100, 50,  # Centered horizontally and positioned at the bottom
                         textColour=(247, 250, 248),
-                        font=font1, margin=25, colour=(62, 66, 64), radius=5,
-                        
-                    )
-                    user_input.setText(text) 
+                        font=font1, margin=25, colour=(62, 66, 64), radius=5)
+                    user_input.setText(text)
                 if selected_item is None:
                     user_input = TextBox(
                         screen,
                         width // 2 - 50, height - 175, 100, 50,  # Centered horizontally and positioned at the bottom
                         textColour=(247, 250, 248),
-                        font=font1, margin=25, colour=(62, 66, 64), radius=5,
-                    )
-                    
-                cost = store['oxen'] * 40 + store['food'] * 0.2 + store['clothing'] * 10 + store['ammo'] * 2 + store['spare_parts'] * 10    
+                        font=font1, margin=25, colour=(62, 66, 64), radius=5)
+                cost = store['oxen'] * 40 + store['food'] * 0.2 + store['clothing'] * 10 + store['ammo'] * 2 + store['spare_parts'] * 10
                 input_prompt = font2.render("Enter quantity here:", True, (255, 255, 255))
                 screen.blit(input_prompt, (width // 2 - input_prompt.get_width() // 2, height - 225))
                 user_input.draw()
@@ -490,23 +474,22 @@ class Main:
                         store['ammo'] = 0
                     elif selected_item == 4:
                         store['spare_parts'] = 0
-                        
+
                 if user_input_text.isdigit():
                     if selected_item == 0:
                         store['oxen'] = int(user_input_text)
                     elif selected_item == 1:
                         store['food'] = int(user_input_text)
-                        
+
                     elif selected_item == 2:
                         store['clothing'] = int(user_input_text)
-                        
+
                     elif selected_item == 3:
                         store['ammo'] = int(user_input_text)
                     elif selected_item == 4:
                         store['spare_parts'] = int(user_input_text)
-                       
-                        
-                if self.stats.oxen != 0 or store['oxen']!=0 and cost <= self.stats.money:
+
+                if self.stats.oxen != 0 or store['oxen'] != 0 and cost <= self.stats.money:
                     next_button.show()
                     next_button.draw()
                 else:
@@ -532,12 +515,12 @@ class Main:
                 if pygame.key.get_pressed()[pygame.K_1]:
                     if prev_choice != 1:
                         selected_choice = 1
-                        
+
                 elif pygame.key.get_pressed()[pygame.K_2]:
                     selected_choice = 2
                 elif pygame.key.get_pressed()[pygame.K_3]:
                     selected_choice = 3
-                    
+
                 elif pygame.key.get_pressed()[pygame.K_4]:
                     selected_choice = 4
                 elif pygame.key.get_pressed()[pygame.K_5]:
@@ -566,9 +549,9 @@ class Main:
                                 prev_choice = None
                                 if self.stats.distance_travelled == 0:
                                     screen_helper['screen'] = 'location'
-                                else: screen_helper['screen'] = 'travel'
-                                
-                            
+                                else:
+                                    screen_helper['screen'] = 'travel'
+
                         elif selected_choice == 2:
                             prev_screen.append(screen_helper['screen'])
                             screen_helper['screen'] = 'display_supplies'
@@ -604,15 +587,15 @@ class Main:
                         elif selected_choice == 5:
                             prev_screen.append(screen_helper['screen'])
                             screen_helper['screen'] = 'trade'
-                            
+
                             self.stats.days_passed += 1
                             self.stats.day += 1
                             trade_options = {
                                 1: ["oxen", random.randint(1, 2)],
-                                2: ["spare_parts",random.randint(3, 5)],
+                                2: ["spare_parts", random.randint(3, 5)],
                                 3: ["clothing", random.randint(5, 9)],
                                 4: ["food", random.randint(50, 150)],
-                                5: ["ammo" , random.randint(20, 60)]
+                                5: ["ammo", random.randint(20, 60)]
                             }
                             your_trade = random.randint(1, 5)
                             their_trade = random.randint(1, 5)
@@ -644,7 +627,7 @@ class Main:
 
             elif screen_helper['screen'] == 'display_supplies':
                 screen.fill((0, 0, 0))
-                
+
                 # Draw "Your Supplies" title
                 supplies_title = font1.render("Your Supplies", True, (255, 255, 255))
                 screen.blit(supplies_title, (width // 2 - supplies_title.get_width() // 2, 50))
@@ -679,63 +662,57 @@ class Main:
             elif screen_helper['screen'] == 'travel':
                 screen.fill((0, 0, 0))
                 prev_choice = 1
-                
-                    
-                
+
                 # Display travel information
                 if game_event is None:
                     selected_choice = None
                     self.stats.days_passed += 1
                     self.stats.day += 1
                     self.stats.food = max(self.stats.food - random.randint(10, 20), 0)
-                    
-                    
                     if random.randint(0, 10) <= 1:
-                        
                         if self.stats.food == 0:
-                            damage = random.randint(5, 15)  
+                            damage = random.randint(5, 15)
                             self.stats.party_health = max(self.stats.party_health - damage, 0)
                         if self.stats.clothing < 4:
-                            self.stats.party_health =  max(self.stats.party_health-4-self.stats.clothing,0)
+                            self.stats.party_health = max(self.stats.party_health-4-self.stats.clothing, 0)
                         game_event = events_occurred(self.stats)
                         if self.stats.oxen == 0:
                             screen_helper['screen'] = 'gameover'
-                        message_text = [game_event,  "Press Space to continue"]   
+                        message_text = [game_event, "Press Space to continue"]
                         if self.stats.wagon_health == 0:
                             screen_helper['screen'] = 'gameover'
                         if self.stats.clothing < 4:
                             message_text.insert(0, f"You do not have sufficent clothing, lose {(4-self.stats.clothing)} health")
                         if self.stats.food == 0:
                             message_text.insert(0, f"You are starving and have lost {damage} health")
-                        
-                        
+
                     else:
                         message_text = ["You continue on the trail"]
                         game_event = None
                         if self.stats.oxen == 0:
                             screen_helper['screen'] = 'gameover'
                         if self.stats.clothing < 4:
-                            self.stats.party_health -=   4-self.stats.clothing
+                            self.stats.party_health -= 4-self.stats.clothing
                             message_text.insert(0, f"You do not have sufficent clothing, lose {(4-self.stats.clothing)} health")
                         if self.stats.food == 0:
-                            damage = random.randint(5, 15)  
+                            damage = random.randint(5, 15)
                             self.stats.party_health = max(self.stats.party_health - damage, 0)
                             message_text.insert(0, f"You are starving and have lost {damage} health")
                     self.stats.distance_travelled += random.randint(10, 15)
-                    if self.stats.distance_travelled  >= 1800:
+                    if self.stats.distance_travelled >= 1800:
                         self.stats.distance_travelled = 1801
                         screen_helper['screen'] = 'location'
-                    
+
                     if next_location != self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)] and self.stats.distance_travelled < 1800:
-                        if  min(dist for dist in total_distances if dist >= self.stats.distance_travelled) in location_images:
+                        if min(dist for dist in total_distances if dist >= self.stats.distance_travelled) in location_images:
                             prev_screen.append(screen_helper['screen'])
                             screen_helper['screen'] = 'location'
                             next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
                         else:
                             game_event = f"You have reached {next_location}"
-                            message_text = [game_event,  "Press Space to continue"]
+                            message_text = [game_event, "Press Space to continue"]
                             next_location = self.total_distances[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)]
-                    
+
                 else:
                     for event in events:
                         if event.type == pygame.KEYDOWN:
@@ -744,17 +721,16 @@ class Main:
 
                 if self.stats.distance_travelled >= 1801:
                     unload_music()
-                    screen_helper['screen'] = 'win'                     
-                
+                    screen_helper['screen'] = 'win'
+
                 i = 0
-                
+
                 for line in message_text:
 
                     travel_info = font.render(line, True, (255, 255, 255))
                     screen.blit(travel_info, ((width - travel_info.get_width()) // 2, (i * 30) + 500 + travel_info.get_height()))
                     i += 1
-                    
-                
+
                 if self.stats.distance_travelled >= 1800:
                     screen_helper['screen'] = 'location'
                     # screen_helper['screen'] = 'win'
@@ -770,7 +746,7 @@ class Main:
                         f"Wagon health: {self.stats.wagon_health}",
                         f"Money: {self.stats.money}",
                         f"Distance to next location: {min((dist for dist in total_distances if dist > self.stats.distance_travelled), default=None)-self.stats.distance_travelled} miles",
-                        f"Next Location: { self.total_distances[min((dist for dist in total_distances if dist > self.stats.distance_travelled), default=None)]}"
+                        f"Next Location: {self.total_distances[min((dist for dist in total_distances if dist > self.stats.distance_travelled), default=None)]}"
                     ]
                 y_offset = 100
                 for line in travel_text:
@@ -788,7 +764,7 @@ class Main:
                     unload_music()
                     if not pygame.mixer.music.get_busy():
                         load_music(music_lose)
-                        ever_music()               
+                        ever_music()
                 pygame.display.flip()
                 pygame.time.wait(1000)
             elif screen_helper['screen'] == 'location':
@@ -797,8 +773,7 @@ class Main:
                     screen.blit(location_images[1802], (0, 0))
                 else:
                     screen.blit(location_images[min((dist for dist in total_distances if dist >= self.stats.distance_travelled), default=None)], (0, 0))
-                
-                
+
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_SPACE:
@@ -811,7 +786,7 @@ class Main:
                                 if not pygame.mixer.music.get_busy():
                                     load_music(music_win)
                                     ever_music()
-                                    
+
             elif screen_helper['screen'] == 'rest':
                 screen.fill((0, 0, 0))
                 if not rested:
@@ -831,8 +806,7 @@ class Main:
                         if event.key == pygame.K_RETURN and user_input_text.isdigit():
                             for i in range(int(user_input_text)):
                                 screen.fill((0, 0, 0))
-                                date_text = font.render(f"{self.stats.month_name} {self.stats.day}, {self.stats.year}",
-                                                        True, (255, 255, 255))
+                                date_text = font.render(f"{self.stats.month_name} {self.stats.day}, {self.stats.year}", True, (255, 255, 255))
                                 screen.blit(date_text, (width // 2 - date_text.get_width() // 2, 200))
                                 self.stats.days_passed += 1
                                 self.stats.day += 1
@@ -865,67 +839,53 @@ class Main:
             elif screen_helper['screen'] == 'hunt':
                 screen.fill((0, 0, 0))
                 if hunt is None:
-                    hunt_text = font1.render(
-                    "You didn't find anything", True, (255, 255, 255))
+                    hunt_text = font1.render("You didn't find anything", True, (255, 255, 255))
                 elif hunt == -1:
-                    hunt_text = font1.render(
-                    "You don't have enough ammo", True, (255, 255, 255))
+                    hunt_text = font1.render("You don't have enough ammo", True, (255, 255, 255))
                 else:
-                    hunt_text = font1.render(
-                    f"You found {hunt} lbs of food", True, (255, 255, 255))
+                    hunt_text = font1.render(f"You found {hunt} lbs of food", True, (255, 255, 255))
                 screen.blit(hunt_text, (
-                width // 2 - hunt_text.get_width() // 2, 100))
+                    width // 2 - hunt_text.get_width() // 2, 100))
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN:
                             screen_helper['screen'] = prev_screen.pop()
-            
-            elif screen_helper['screen'] == 'trade':   
-                
+
+            elif screen_helper['screen'] == 'trade':
+
                 screen.fill((0, 0, 0))
                 trade_text = font1.render(
-                f"Do you want to trade {yourrng} of your {trade_options[your_trade][0]}, "
-                f"for {theirrng} of their {trade_options[their_trade][0]}",
-                True, (255, 255, 255)
-                )
-                screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 100))
-                if not getattr(self.stats,
-                    trade_options[your_trade][0]) >= yourrng:
-                    trade_text = font1.render("You don't have enough to trade",
+                    f"Do you want to trade {yourrng} of your {trade_options[your_trade][0]}, "
+                    f"for {theirrng} of their {trade_options[their_trade][0]}",
                     True, (255, 255, 255))
-                    screen.blit(trade_text, 
-                    (width // 2 - trade_text.get_width() // 2, 200))
+                screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 100))
+                if not getattr(self.stats, trade_options[your_trade][0]) >= yourrng:
+                    trade_text = font1.render("You don't have enough to trade", True, (255, 255, 255))
+                    screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 200))
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_y:
                             seen['y'] = event
-                            if getattr(self.stats,
-                                trade_options[your_trade][0]) >= yourrng:
-                                setattr(self.stats, trade_options
-                                [your_trade][0], getattr(self.stats, 
-                                trade_options[your_trade][0]) - yourrng)
-                                setattr(self.stats, trade_options
-                                [their_trade][0], getattr(self.stats,
-                                trade_options[their_trade][0]) + theirrng)
+                            if getattr(self.stats, trade_options[your_trade][0]) >= yourrng:
+                                setattr(self.stats, trade_options[your_trade][0], getattr(self.stats, trade_options[your_trade][0]) - yourrng)
+                                setattr(self.stats, trade_options[their_trade][0], getattr(self.stats, trade_options[their_trade][0]) + theirrng)
                                 screen_helper['screen'] = prev_screen.pop()
-                
+
                         elif event.key == pygame.K_n:
                             screen_helper['screen'] = prev_screen.pop()
                             seen = {}
                         if event.key == pygame.K_RETURN:
                             seen = {}
                             screen_helper['screen'] = prev_screen.pop()
-                
-                if 'y' in seen and not getattr(
-                    self.stats, trade_options[your_trade][0]) >= yourrng:
+
+                if 'y' in seen and not getattr(self.stats, trade_options[your_trade][0]) >= yourrng:
                     trade_text = font1.render(
-                    "You don't have enough to trade", True, (255, 255, 255))
-                    screen.blit(trade_text, (width // 2 - 
-                    trade_text.get_width() // 2, 200))
+                        "You don't have enough to trade", True, (255, 255, 255))
+                    screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 200))
             elif screen_helper['screen'] == 'gameover':
                 screen.fill((0, 0, 0))
                 text = "Game over."
-                
+
                 if self.stats.oxen == 0:
                     text += " You have no oxen left."
                 elif self.stats.party_health == 0:

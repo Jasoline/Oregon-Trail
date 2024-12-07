@@ -2,7 +2,7 @@ import unittest
 from stats import *
 from randomizer import *
 
- 
+
 class OregonTest(unittest.TestCase):
     def setUp(self):
         self.stats = Stats()
@@ -90,7 +90,7 @@ class OregonTest(unittest.TestCase):
     def test_update_death(self):
         self.stats.update_death()
         self.assertEqual(self.stats.deaths, 1)
-    
+
     def test_events(self):
         stats = Stats()
         stats.party_health = 10
@@ -122,6 +122,7 @@ class OregonTest(unittest.TestCase):
         stats.clothing = 1
         event.execute()
         self.assertEqual(stats.clothing < 1, True)
+
 
 if __name__ == '__main__':
     unittest.main()

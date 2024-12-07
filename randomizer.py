@@ -51,7 +51,7 @@ class WagonDmg:
             self.stats.spare_parts -= 1
             return f"One of your wagon parts broke. You have {self.stats.spare_parts} spare parts left."
         damage = random.randint(-7, -2)*5
-        self.stats.wagon_health = max(self.stats.wagon_health+damage,0)
+        self.stats.wagon_health = max(self.stats.wagon_health+damage, 0)
         return f"Your wagon took {-1*damage} damage from poor road conditions. Your wagon's health is now: {self.stats.wagon_health}"
 
 
@@ -64,6 +64,7 @@ class Loot:
         self.stats.money += gold_found
         return f"You found a pouch, you found {gold_found} money. Your money is now: {self.stats.money}"
 
+
 class OxenDied:
     def __init__(self, stats):
         self.stats = stats
@@ -71,6 +72,8 @@ class OxenDied:
     def execute(self):
         self.stats.oxen -= 1
         return f"One of your oxen got sick and died. You have {self.stats.oxen} oxen left."
+
+
 class Clothing:
     def __init__(self, stats):
         self.stats = stats
@@ -93,7 +96,8 @@ class Clothing:
                 return Loot(self.stats).execute()
             elif event_number == 6:
                 return OxenDied(self.stats).execute()
-        
+
+
 # Function to handle events
 def events_occurred(stats):
     # pygame.mixer.music.unload()
@@ -120,4 +124,3 @@ def events_occurred(stats):
 # if __name__ == "__main__":
     # stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result
     # print(events_occurred(stats_instance))  # Print the result of a random event
-

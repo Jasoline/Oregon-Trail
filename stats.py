@@ -180,8 +180,6 @@ class Stats:
         # Set the amount of money
         self.__money = money
 
-  
-
     @property
     def wagon_health(self):
         # Return the health of the wagon
@@ -195,6 +193,3 @@ class Stats:
     def update_death(self):
         # Update the number of deaths
         self.__deaths = 1
-
- 
-
