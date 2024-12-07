@@ -42,7 +42,7 @@
                                 <a class="variable" href="#RandomEvent.THEFT">THEFT</a>
                         </li>
                         <li>
-                                <a class="variable" href="#RandomEvent.DYSENTERY">DYSENTERY</a>
+                                <a class="variable" href="#RandomEvent.BITE">BITE</a>
                         </li>
                         <li>
                                 <a class="variable" href="#RandomEvent.WAGON_DMG">WAGON_DMG</a>
@@ -84,16 +84,16 @@
 
             </li>
             <li>
-                    <a class="class" href="#Dysentery">Dysentery</a>
+                    <a class="class" href="#Bite">Bite</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="function" href="#Dysentery.__init__">Dysentery</a>
+                                <a class="function" href="#Bite.__init__">Bite</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Dysentery.stats">stats</a>
+                                <a class="variable" href="#Bite.stats">stats</a>
                         </li>
                         <li>
-                                <a class="function" href="#Dysentery.execute">execute</a>
+                                <a class="function" href="#Bite.execute">execute</a>
                         </li>
                 </ul>
 
@@ -129,6 +129,36 @@
 
             </li>
             <li>
+                    <a class="class" href="#OxenDied">OxenDied</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#OxenDied.__init__">OxenDied</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#OxenDied.stats">stats</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#OxenDied.execute">execute</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#Clothing">Clothing</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#Clothing.__init__">Clothing</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Clothing.stats">stats</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Clothing.execute">execute</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
                     <a class="function" href="#events_occurred">events_occurred</a>
             </li>
     </ul>
@@ -152,92 +182,128 @@ randomizer    </h1>
 
                         <label class="view-source-button" for="mod-randomizer-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="kn">import</span> <span class="nn">random</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="kn">from</span> <span class="nn">stats</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1"># Imports the Stats class</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="k">class</span> <span class="nc">RandomEvent</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>    <span class="n">FOOD_POISONING</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>    <span class="n">THEFT</span> <span class="o">=</span> <span class="mi">2</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>    <span class="n">DYSENTERY</span> <span class="o">=</span> <span class="mi">3</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="n">WAGON_DMG</span> <span class="o">=</span> <span class="mi">4</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    <span class="n">LOOT</span> <span class="o">=</span> <span class="mi">5</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="c1"># Event classes</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="k">class</span> <span class="nc">FoodPoisoning</span><span class="p">:</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+=</span> <span class="n">damage</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got food poisoning, you took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="k">class</span> <span class="nc">Theft</span><span class="p">:</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">loss</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got robbed, you lost </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">loss</span><span class="si">}</span><span class="s2"> money. your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="k">class</span> <span class="nc">Dysentery</span><span class="p">:</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>
-</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+=</span> <span class="n">damage</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got dysentery! You took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>
-</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>
-</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a><span class="k">class</span> <span class="nc">WagonDmg</span><span class="p">:</span>
-</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>
-</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span> <span class="o">+=</span> <span class="n">damage</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Your wagon took damage from poor road conditions, your wagon took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your wagon&#39;s health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>
-</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a>
-</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a><span class="k">class</span> <span class="nc">Loot</span><span class="p">:</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>
-</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>        <span class="n">gold_found</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">gold_found</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You found a pouch, you found </span><span class="si">{</span><span class="n">gold_found</span><span class="si">}</span><span class="s2"> money. Your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>
-</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>
-</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a><span class="c1"># Function to handle events</span>
-</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a><span class="k">def</span> <span class="nf">events_occurred</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a>    <span class="c1"># pygame.mixer.music.unload()</span>
-</span><span id="L-68"><a href="#L-68"><span class="linenos">68</span></a>    <span class="c1"># pygame.mixer.music.load(os.path.join(&quot;songs&quot;, &quot;The Long Road [ ezmp3.cc ].mp3&quot;))</span>
-</span><span id="L-69"><a href="#L-69"><span class="linenos">69</span></a>    <span class="c1"># pygame.mixer.music.play(-1)</span>
-</span><span id="L-70"><a href="#L-70"><span class="linenos">70</span></a>    <span class="n">event_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos">71</span></a>    <span class="k">if</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="L-72"><a href="#L-72"><span class="linenos">72</span></a>        <span class="k">return</span> <span class="n">FoodPoisoning</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos">73</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos">74</span></a>        <span class="k">return</span> <span class="n">Theft</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="L-75"><a href="#L-75"><span class="linenos">75</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-</span><span id="L-76"><a href="#L-76"><span class="linenos">76</span></a>        <span class="k">return</span> <span class="n">Dysentery</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="L-77"><a href="#L-77"><span class="linenos">77</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-</span><span id="L-78"><a href="#L-78"><span class="linenos">78</span></a>        <span class="k">return</span> <span class="n">WagonDmg</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos">79</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-</span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a>        <span class="k">return</span> <span class="n">Loot</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="L-81"><a href="#L-81"><span class="linenos">81</span></a>
-</span><span id="L-82"><a href="#L-82"><span class="linenos">82</span></a>
-</span><span id="L-83"><a href="#L-83"><span class="linenos">83</span></a><span class="c1"># code to test events</span>
-</span><span id="L-84"><a href="#L-84"><span class="linenos">84</span></a><span class="c1"># if __name__ == &quot;__main__&quot;:</span>
-</span><span id="L-85"><a href="#L-85"><span class="linenos">85</span></a>    <span class="c1"># stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result</span>
-</span><span id="L-86"><a href="#L-86"><span class="linenos">86</span></a>    <span class="c1"># print(events_occurred(stats_instance))  # Print the result of a random event</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="kn">import</span> <span class="nn">random</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a><span class="kn">from</span> <span class="nn">stats</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1"># Imports the Stats class</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="k">class</span> <span class="nc">RandomEvent</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a>    <span class="n">FOOD_POISONING</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a>    <span class="n">THEFT</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>    <span class="n">BITE</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>    <span class="n">WAGON_DMG</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a>    <span class="n">LOOT</span> <span class="o">=</span> <span class="mi">5</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>
+</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a>
+</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a><span class="c1"># Event classes</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a><span class="k">class</span> <span class="nc">FoodPoisoning</span><span class="p">:</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>
+</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+</span> <span class="n">damage</span><span class="p">)</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got food poisoning, you took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>
+</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a><span class="k">class</span> <span class="nc">Theft</span><span class="p">:</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">loss</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got robbed, you lost </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">loss</span><span class="si">}</span><span class="s2"> money. your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a><span class="k">class</span> <span class="nc">Bite</span><span class="p">:</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+</span> <span class="n">damage</span><span class="p">)</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your animals bit you! You took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="k">class</span> <span class="nc">WagonDmg</span><span class="p">:</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your wagon parts broke. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span><span class="si">}</span><span class="s2"> spare parts left.&quot;</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="o">+</span><span class="n">damage</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Your wagon took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage from poor road conditions. Your wagon&#39;s health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a><span class="k">class</span> <span class="nc">Loot</span><span class="p">:</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>        <span class="n">gold_found</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">gold_found</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You found a pouch, you found </span><span class="si">{</span><span class="n">gold_found</span><span class="si">}</span><span class="s2"> money. Your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a><span class="k">class</span> <span class="nc">OxenDied</span><span class="p">:</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">oxen</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your oxen got sick and died. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">oxen</span><span class="si">}</span><span class="s2"> oxen left.&quot;</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="k">class</span> <span class="nc">Clothing</span><span class="p">:</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your clothes got ripped. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span><span class="si">}</span><span class="s2"> clothes left.&quot;</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>            <span class="n">event_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>            <span class="k">if</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>                <span class="k">return</span> <span class="n">FoodPoisoning</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>                <span class="k">return</span> <span class="n">Theft</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>                <span class="k">return</span> <span class="n">Bite</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>                <span class="k">return</span> <span class="n">WagonDmg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>                <span class="k">return</span> <span class="n">Loot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>                <span class="k">return</span> <span class="n">OxenDied</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>        
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a><span class="c1"># Function to handle events</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a><span class="k">def</span> <span class="nf">events_occurred</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>    <span class="c1"># pygame.mixer.music.unload()</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>    <span class="c1"># pygame.mixer.music.load(os.path.join(&quot;songs&quot;, &quot;The Long Road [ ezmp3.cc ].mp3&quot;))</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>    <span class="c1"># pygame.mixer.music.play(-1)</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>    <span class="n">event_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>    <span class="k">if</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>        <span class="k">return</span> <span class="n">FoodPoisoning</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>        <span class="k">return</span> <span class="n">Theft</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a>        <span class="k">return</span> <span class="n">Bite</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>        <span class="k">return</span> <span class="n">WagonDmg</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="n">Loot</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>        <span class="k">return</span> <span class="n">OxenDied</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a>        <span class="k">return</span> <span class="n">Clothing</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="c1"># code to test events</span>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a><span class="c1"># if __name__ == &quot;__main__&quot;:</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>    <span class="c1"># stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a>    <span class="c1"># print(events_occurred(stats_instance))  # Print the result of a random event</span>
 </span></pre></div>
 
 
@@ -256,7 +322,7 @@ randomizer    </h1>
             <div class="pdoc-code codehilite"><pre><span></span><span id="RandomEvent-7"><a href="#RandomEvent-7"><span class="linenos"> 7</span></a><span class="k">class</span> <span class="nc">RandomEvent</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
 </span><span id="RandomEvent-8"><a href="#RandomEvent-8"><span class="linenos"> 8</span></a>    <span class="n">FOOD_POISONING</span> <span class="o">=</span> <span class="mi">1</span>
 </span><span id="RandomEvent-9"><a href="#RandomEvent-9"><span class="linenos"> 9</span></a>    <span class="n">THEFT</span> <span class="o">=</span> <span class="mi">2</span>
-</span><span id="RandomEvent-10"><a href="#RandomEvent-10"><span class="linenos">10</span></a>    <span class="n">DYSENTERY</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="RandomEvent-10"><a href="#RandomEvent-10"><span class="linenos">10</span></a>    <span class="n">BITE</span> <span class="o">=</span> <span class="mi">3</span>
 </span><span id="RandomEvent-11"><a href="#RandomEvent-11"><span class="linenos">11</span></a>    <span class="n">WAGON_DMG</span> <span class="o">=</span> <span class="mi">4</span>
 </span><span id="RandomEvent-12"><a href="#RandomEvent-12"><span class="linenos">12</span></a>    <span class="n">LOOT</span> <span class="o">=</span> <span class="mi">5</span>
 </span></pre></div>
@@ -288,14 +354,14 @@ randomizer    </h1>
     
 
                             </div>
-                            <div id="RandomEvent.DYSENTERY" class="classattr">
+                            <div id="RandomEvent.BITE" class="classattr">
                                 <div class="attr variable">
-            <span class="name">DYSENTERY</span>        =
-<span class="default_value">&lt;<a href="#RandomEvent.DYSENTERY">RandomEvent.DYSENTERY</a>: 3&gt;</span>
+            <span class="name">BITE</span>        =
+<span class="default_value">&lt;<a href="#RandomEvent.BITE">RandomEvent.BITE</a>: 3&gt;</span>
 
         
     </div>
-    <a class="headerlink" href="#RandomEvent.DYSENTERY"></a>
+    <a class="headerlink" href="#RandomEvent.BITE"></a>
     
     
 
@@ -341,8 +407,8 @@ randomizer    </h1>
 </span><span id="FoodPoisoning-18"><a href="#FoodPoisoning-18"><span class="linenos">18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
 </span><span id="FoodPoisoning-19"><a href="#FoodPoisoning-19"><span class="linenos">19</span></a>
 </span><span id="FoodPoisoning-20"><a href="#FoodPoisoning-20"><span class="linenos">20</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="FoodPoisoning-21"><a href="#FoodPoisoning-21"><span class="linenos">21</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="FoodPoisoning-22"><a href="#FoodPoisoning-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+=</span> <span class="n">damage</span>
+</span><span id="FoodPoisoning-21"><a href="#FoodPoisoning-21"><span class="linenos">21</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>
+</span><span id="FoodPoisoning-22"><a href="#FoodPoisoning-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+</span> <span class="n">damage</span><span class="p">)</span>
 </span><span id="FoodPoisoning-23"><a href="#FoodPoisoning-23"><span class="linenos">23</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got food poisoning, you took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
 
@@ -390,8 +456,8 @@ randomizer    </h1>
     </div>
     <a class="headerlink" href="#FoodPoisoning.execute"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="FoodPoisoning.execute-20"><a href="#FoodPoisoning.execute-20"><span class="linenos">20</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="FoodPoisoning.execute-21"><a href="#FoodPoisoning.execute-21"><span class="linenos">21</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="FoodPoisoning.execute-22"><a href="#FoodPoisoning.execute-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+=</span> <span class="n">damage</span>
+</span><span id="FoodPoisoning.execute-21"><a href="#FoodPoisoning.execute-21"><span class="linenos">21</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>
+</span><span id="FoodPoisoning.execute-22"><a href="#FoodPoisoning.execute-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+</span> <span class="n">damage</span><span class="p">)</span>
 </span><span id="FoodPoisoning.execute-23"><a href="#FoodPoisoning.execute-23"><span class="linenos">23</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got food poisoning, you took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
 
@@ -416,7 +482,7 @@ randomizer    </h1>
 </span><span id="Theft-28"><a href="#Theft-28"><span class="linenos">28</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
 </span><span id="Theft-29"><a href="#Theft-29"><span class="linenos">29</span></a>
 </span><span id="Theft-30"><a href="#Theft-30"><span class="linenos">30</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Theft-31"><a href="#Theft-31"><span class="linenos">31</span></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="Theft-31"><a href="#Theft-31"><span class="linenos">31</span></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
 </span><span id="Theft-32"><a href="#Theft-32"><span class="linenos">32</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">loss</span>
 </span><span id="Theft-33"><a href="#Theft-33"><span class="linenos">33</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got robbed, you lost </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">loss</span><span class="si">}</span><span class="s2"> money. your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
@@ -465,7 +531,7 @@ randomizer    </h1>
     </div>
     <a class="headerlink" href="#Theft.execute"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="Theft.execute-30"><a href="#Theft.execute-30"><span class="linenos">30</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Theft.execute-31"><a href="#Theft.execute-31"><span class="linenos">31</span></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="Theft.execute-31"><a href="#Theft.execute-31"><span class="linenos">31</span></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
 </span><span id="Theft.execute-32"><a href="#Theft.execute-32"><span class="linenos">32</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">loss</span>
 </span><span id="Theft.execute-33"><a href="#Theft.execute-33"><span class="linenos">33</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got robbed, you lost </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">loss</span><span class="si">}</span><span class="s2"> money. your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
@@ -475,74 +541,74 @@ randomizer    </h1>
 
                             </div>
                 </section>
-                <section id="Dysentery">
-                            <input id="Dysentery-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="Bite">
+                            <input id="Bite-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
             
     <span class="def">class</span>
-    <span class="name">Dysentery</span>:
+    <span class="name">Bite</span>:
 
-                <label class="view-source-button" for="Dysentery-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="Bite-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#Dysentery"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Dysentery-36"><a href="#Dysentery-36"><span class="linenos">36</span></a><span class="k">class</span> <span class="nc">Dysentery</span><span class="p">:</span>
-</span><span id="Dysentery-37"><a href="#Dysentery-37"><span class="linenos">37</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="Dysentery-38"><a href="#Dysentery-38"><span class="linenos">38</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
-</span><span id="Dysentery-39"><a href="#Dysentery-39"><span class="linenos">39</span></a>
-</span><span id="Dysentery-40"><a href="#Dysentery-40"><span class="linenos">40</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Dysentery-41"><a href="#Dysentery-41"><span class="linenos">41</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="Dysentery-42"><a href="#Dysentery-42"><span class="linenos">42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+=</span> <span class="n">damage</span>
-</span><span id="Dysentery-43"><a href="#Dysentery-43"><span class="linenos">43</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got dysentery! You took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
+    <a class="headerlink" href="#Bite"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Bite-36"><a href="#Bite-36"><span class="linenos">36</span></a><span class="k">class</span> <span class="nc">Bite</span><span class="p">:</span>
+</span><span id="Bite-37"><a href="#Bite-37"><span class="linenos">37</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="Bite-38"><a href="#Bite-38"><span class="linenos">38</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="Bite-39"><a href="#Bite-39"><span class="linenos">39</span></a>
+</span><span id="Bite-40"><a href="#Bite-40"><span class="linenos">40</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Bite-41"><a href="#Bite-41"><span class="linenos">41</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>
+</span><span id="Bite-42"><a href="#Bite-42"><span class="linenos">42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+</span> <span class="n">damage</span><span class="p">)</span>
+</span><span id="Bite-43"><a href="#Bite-43"><span class="linenos">43</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your animals bit you! You took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
 
 
     
 
-                            <div id="Dysentery.__init__" class="classattr">
-                                        <input id="Dysentery.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="Bite.__init__" class="classattr">
+                                        <input id="Bite.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
-        <span class="name">Dysentery</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">stats</span></span>)</span>
+        <span class="name">Bite</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">stats</span></span>)</span>
 
-                <label class="view-source-button" for="Dysentery.__init__-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="Bite.__init__-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#Dysentery.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Dysentery.__init__-37"><a href="#Dysentery.__init__-37"><span class="linenos">37</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="Dysentery.__init__-38"><a href="#Dysentery.__init__-38"><span class="linenos">38</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+    <a class="headerlink" href="#Bite.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Bite.__init__-37"><a href="#Bite.__init__-37"><span class="linenos">37</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="Bite.__init__-38"><a href="#Bite.__init__-38"><span class="linenos">38</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
 </span></pre></div>
 
 
     
 
                             </div>
-                            <div id="Dysentery.stats" class="classattr">
+                            <div id="Bite.stats" class="classattr">
                                 <div class="attr variable">
             <span class="name">stats</span>
 
         
     </div>
-    <a class="headerlink" href="#Dysentery.stats"></a>
+    <a class="headerlink" href="#Bite.stats"></a>
     
     
 
                             </div>
-                            <div id="Dysentery.execute" class="classattr">
-                                        <input id="Dysentery.execute-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="Bite.execute" class="classattr">
+                                        <input id="Bite.execute-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
         <span class="name">execute</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="Dysentery.execute-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="Bite.execute-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#Dysentery.execute"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Dysentery.execute-40"><a href="#Dysentery.execute-40"><span class="linenos">40</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Dysentery.execute-41"><a href="#Dysentery.execute-41"><span class="linenos">41</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="Dysentery.execute-42"><a href="#Dysentery.execute-42"><span class="linenos">42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+=</span> <span class="n">damage</span>
-</span><span id="Dysentery.execute-43"><a href="#Dysentery.execute-43"><span class="linenos">43</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You got dysentery! You took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
+    <a class="headerlink" href="#Bite.execute"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Bite.execute-40"><a href="#Bite.execute-40"><span class="linenos">40</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Bite.execute-41"><a href="#Bite.execute-41"><span class="linenos">41</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>
+</span><span id="Bite.execute-42"><a href="#Bite.execute-42"><span class="linenos">42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span> <span class="o">+</span> <span class="n">damage</span><span class="p">)</span>
+</span><span id="Bite.execute-43"><a href="#Bite.execute-43"><span class="linenos">43</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your animals bit you! You took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">party_health</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
 
 
@@ -566,9 +632,12 @@ randomizer    </h1>
 </span><span id="WagonDmg-48"><a href="#WagonDmg-48"><span class="linenos">48</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
 </span><span id="WagonDmg-49"><a href="#WagonDmg-49"><span class="linenos">49</span></a>
 </span><span id="WagonDmg-50"><a href="#WagonDmg-50"><span class="linenos">50</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="WagonDmg-51"><a href="#WagonDmg-51"><span class="linenos">51</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="WagonDmg-52"><a href="#WagonDmg-52"><span class="linenos">52</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span> <span class="o">+=</span> <span class="n">damage</span>
-</span><span id="WagonDmg-53"><a href="#WagonDmg-53"><span class="linenos">53</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Your wagon took damage from poor road conditions, your wagon took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your wagon&#39;s health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="WagonDmg-51"><a href="#WagonDmg-51"><span class="linenos">51</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="WagonDmg-52"><a href="#WagonDmg-52"><span class="linenos">52</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="WagonDmg-53"><a href="#WagonDmg-53"><span class="linenos">53</span></a>            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your wagon parts broke. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span><span class="si">}</span><span class="s2"> spare parts left.&quot;</span>
+</span><span id="WagonDmg-54"><a href="#WagonDmg-54"><span class="linenos">54</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span>
+</span><span id="WagonDmg-55"><a href="#WagonDmg-55"><span class="linenos">55</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="o">+</span><span class="n">damage</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="WagonDmg-56"><a href="#WagonDmg-56"><span class="linenos">56</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Your wagon took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage from poor road conditions. Your wagon&#39;s health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
 
 
@@ -615,9 +684,12 @@ randomizer    </h1>
     </div>
     <a class="headerlink" href="#WagonDmg.execute"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="WagonDmg.execute-50"><a href="#WagonDmg.execute-50"><span class="linenos">50</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="WagonDmg.execute-51"><a href="#WagonDmg.execute-51"><span class="linenos">51</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="WagonDmg.execute-52"><a href="#WagonDmg.execute-52"><span class="linenos">52</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span> <span class="o">+=</span> <span class="n">damage</span>
-</span><span id="WagonDmg.execute-53"><a href="#WagonDmg.execute-53"><span class="linenos">53</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Your wagon took damage from poor road conditions, your wagon took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage. Your wagon&#39;s health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="WagonDmg.execute-51"><a href="#WagonDmg.execute-51"><span class="linenos">51</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="WagonDmg.execute-52"><a href="#WagonDmg.execute-52"><span class="linenos">52</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="WagonDmg.execute-53"><a href="#WagonDmg.execute-53"><span class="linenos">53</span></a>            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your wagon parts broke. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spare_parts</span><span class="si">}</span><span class="s2"> spare parts left.&quot;</span>
+</span><span id="WagonDmg.execute-54"><a href="#WagonDmg.execute-54"><span class="linenos">54</span></a>        <span class="n">damage</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span>
+</span><span id="WagonDmg.execute-55"><a href="#WagonDmg.execute-55"><span class="linenos">55</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="o">+</span><span class="n">damage</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="WagonDmg.execute-56"><a href="#WagonDmg.execute-56"><span class="linenos">56</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Your wagon took </span><span class="si">{</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">damage</span><span class="si">}</span><span class="s2"> damage from poor road conditions. Your wagon&#39;s health is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">wagon_health</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
 
 
@@ -636,14 +708,14 @@ randomizer    </h1>
 
     </div>
     <a class="headerlink" href="#Loot"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Loot-56"><a href="#Loot-56"><span class="linenos">56</span></a><span class="k">class</span> <span class="nc">Loot</span><span class="p">:</span>
-</span><span id="Loot-57"><a href="#Loot-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="Loot-58"><a href="#Loot-58"><span class="linenos">58</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
-</span><span id="Loot-59"><a href="#Loot-59"><span class="linenos">59</span></a>
-</span><span id="Loot-60"><a href="#Loot-60"><span class="linenos">60</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Loot-61"><a href="#Loot-61"><span class="linenos">61</span></a>        <span class="n">gold_found</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</span><span id="Loot-62"><a href="#Loot-62"><span class="linenos">62</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">gold_found</span>
-</span><span id="Loot-63"><a href="#Loot-63"><span class="linenos">63</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You found a pouch, you found </span><span class="si">{</span><span class="n">gold_found</span><span class="si">}</span><span class="s2"> money. Your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Loot-59"><a href="#Loot-59"><span class="linenos">59</span></a><span class="k">class</span> <span class="nc">Loot</span><span class="p">:</span>
+</span><span id="Loot-60"><a href="#Loot-60"><span class="linenos">60</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="Loot-61"><a href="#Loot-61"><span class="linenos">61</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="Loot-62"><a href="#Loot-62"><span class="linenos">62</span></a>
+</span><span id="Loot-63"><a href="#Loot-63"><span class="linenos">63</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Loot-64"><a href="#Loot-64"><span class="linenos">64</span></a>        <span class="n">gold_found</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
+</span><span id="Loot-65"><a href="#Loot-65"><span class="linenos">65</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">gold_found</span>
+</span><span id="Loot-66"><a href="#Loot-66"><span class="linenos">66</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You found a pouch, you found </span><span class="si">{</span><span class="n">gold_found</span><span class="si">}</span><span class="s2"> money. Your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></pre></div>
 
 
@@ -659,8 +731,8 @@ randomizer    </h1>
 
     </div>
     <a class="headerlink" href="#Loot.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Loot.__init__-57"><a href="#Loot.__init__-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
-</span><span id="Loot.__init__-58"><a href="#Loot.__init__-58"><span class="linenos">58</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Loot.__init__-60"><a href="#Loot.__init__-60"><span class="linenos">60</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="Loot.__init__-61"><a href="#Loot.__init__-61"><span class="linenos">61</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
 </span></pre></div>
 
 
@@ -689,10 +761,186 @@ randomizer    </h1>
 
     </div>
     <a class="headerlink" href="#Loot.execute"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Loot.execute-60"><a href="#Loot.execute-60"><span class="linenos">60</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Loot.execute-61"><a href="#Loot.execute-61"><span class="linenos">61</span></a>        <span class="n">gold_found</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</span><span id="Loot.execute-62"><a href="#Loot.execute-62"><span class="linenos">62</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">gold_found</span>
-</span><span id="Loot.execute-63"><a href="#Loot.execute-63"><span class="linenos">63</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You found a pouch, you found </span><span class="si">{</span><span class="n">gold_found</span><span class="si">}</span><span class="s2"> money. Your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Loot.execute-63"><a href="#Loot.execute-63"><span class="linenos">63</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Loot.execute-64"><a href="#Loot.execute-64"><span class="linenos">64</span></a>        <span class="n">gold_found</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
+</span><span id="Loot.execute-65"><a href="#Loot.execute-65"><span class="linenos">65</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span> <span class="o">+=</span> <span class="n">gold_found</span>
+</span><span id="Loot.execute-66"><a href="#Loot.execute-66"><span class="linenos">66</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You found a pouch, you found </span><span class="si">{</span><span class="n">gold_found</span><span class="si">}</span><span class="s2"> money. Your money is now: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">money</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                </section>
+                <section id="OxenDied">
+                            <input id="OxenDied-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">OxenDied</span>:
+
+                <label class="view-source-button" for="OxenDied-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#OxenDied"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="OxenDied-68"><a href="#OxenDied-68"><span class="linenos">68</span></a><span class="k">class</span> <span class="nc">OxenDied</span><span class="p">:</span>
+</span><span id="OxenDied-69"><a href="#OxenDied-69"><span class="linenos">69</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="OxenDied-70"><a href="#OxenDied-70"><span class="linenos">70</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="OxenDied-71"><a href="#OxenDied-71"><span class="linenos">71</span></a>
+</span><span id="OxenDied-72"><a href="#OxenDied-72"><span class="linenos">72</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="OxenDied-73"><a href="#OxenDied-73"><span class="linenos">73</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">oxen</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="OxenDied-74"><a href="#OxenDied-74"><span class="linenos">74</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your oxen got sick and died. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">oxen</span><span class="si">}</span><span class="s2"> oxen left.&quot;</span>
+</span></pre></div>
+
+
+    
+
+                            <div id="OxenDied.__init__" class="classattr">
+                                        <input id="OxenDied.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">OxenDied</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">stats</span></span>)</span>
+
+                <label class="view-source-button" for="OxenDied.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#OxenDied.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="OxenDied.__init__-69"><a href="#OxenDied.__init__-69"><span class="linenos">69</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="OxenDied.__init__-70"><a href="#OxenDied.__init__-70"><span class="linenos">70</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="OxenDied.stats" class="classattr">
+                                <div class="attr variable">
+            <span class="name">stats</span>
+
+        
+    </div>
+    <a class="headerlink" href="#OxenDied.stats"></a>
+    
+    
+
+                            </div>
+                            <div id="OxenDied.execute" class="classattr">
+                                        <input id="OxenDied.execute-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">execute</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="OxenDied.execute-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#OxenDied.execute"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="OxenDied.execute-72"><a href="#OxenDied.execute-72"><span class="linenos">72</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="OxenDied.execute-73"><a href="#OxenDied.execute-73"><span class="linenos">73</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">oxen</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="OxenDied.execute-74"><a href="#OxenDied.execute-74"><span class="linenos">74</span></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your oxen got sick and died. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">oxen</span><span class="si">}</span><span class="s2"> oxen left.&quot;</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                </section>
+                <section id="Clothing">
+                            <input id="Clothing-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">Clothing</span>:
+
+                <label class="view-source-button" for="Clothing-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Clothing"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Clothing-75"><a href="#Clothing-75"><span class="linenos">75</span></a><span class="k">class</span> <span class="nc">Clothing</span><span class="p">:</span>
+</span><span id="Clothing-76"><a href="#Clothing-76"><span class="linenos">76</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="Clothing-77"><a href="#Clothing-77"><span class="linenos">77</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span><span id="Clothing-78"><a href="#Clothing-78"><span class="linenos">78</span></a>
+</span><span id="Clothing-79"><a href="#Clothing-79"><span class="linenos">79</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Clothing-80"><a href="#Clothing-80"><span class="linenos">80</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="Clothing-81"><a href="#Clothing-81"><span class="linenos">81</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="Clothing-82"><a href="#Clothing-82"><span class="linenos">82</span></a>            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your clothes got ripped. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span><span class="si">}</span><span class="s2"> clothes left.&quot;</span>
+</span><span id="Clothing-83"><a href="#Clothing-83"><span class="linenos">83</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="Clothing-84"><a href="#Clothing-84"><span class="linenos">84</span></a>            <span class="n">event_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span><span id="Clothing-85"><a href="#Clothing-85"><span class="linenos">85</span></a>            <span class="k">if</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="Clothing-86"><a href="#Clothing-86"><span class="linenos">86</span></a>                <span class="k">return</span> <span class="n">FoodPoisoning</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing-87"><a href="#Clothing-87"><span class="linenos">87</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span id="Clothing-88"><a href="#Clothing-88"><span class="linenos">88</span></a>                <span class="k">return</span> <span class="n">Theft</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing-89"><a href="#Clothing-89"><span class="linenos">89</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="Clothing-90"><a href="#Clothing-90"><span class="linenos">90</span></a>                <span class="k">return</span> <span class="n">Bite</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing-91"><a href="#Clothing-91"><span class="linenos">91</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+</span><span id="Clothing-92"><a href="#Clothing-92"><span class="linenos">92</span></a>                <span class="k">return</span> <span class="n">WagonDmg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing-93"><a href="#Clothing-93"><span class="linenos">93</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+</span><span id="Clothing-94"><a href="#Clothing-94"><span class="linenos">94</span></a>                <span class="k">return</span> <span class="n">Loot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing-95"><a href="#Clothing-95"><span class="linenos">95</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+</span><span id="Clothing-96"><a href="#Clothing-96"><span class="linenos">96</span></a>                <span class="k">return</span> <span class="n">OxenDied</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span></pre></div>
+
+
+    
+
+                            <div id="Clothing.__init__" class="classattr">
+                                        <input id="Clothing.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">Clothing</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">stats</span></span>)</span>
+
+                <label class="view-source-button" for="Clothing.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Clothing.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Clothing.__init__-76"><a href="#Clothing.__init__-76"><span class="linenos">76</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stats</span><span class="p">):</span>
+</span><span id="Clothing.__init__-77"><a href="#Clothing.__init__-77"><span class="linenos">77</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="Clothing.stats" class="classattr">
+                                <div class="attr variable">
+            <span class="name">stats</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Clothing.stats"></a>
+    
+    
+
+                            </div>
+                            <div id="Clothing.execute" class="classattr">
+                                        <input id="Clothing.execute-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">execute</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Clothing.execute-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Clothing.execute"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Clothing.execute-79"><a href="#Clothing.execute-79"><span class="linenos">79</span></a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Clothing.execute-80"><a href="#Clothing.execute-80"><span class="linenos">80</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="Clothing.execute-81"><a href="#Clothing.execute-81"><span class="linenos">81</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="Clothing.execute-82"><a href="#Clothing.execute-82"><span class="linenos">82</span></a>            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;One of your clothes got ripped. You have </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">clothing</span><span class="si">}</span><span class="s2"> clothes left.&quot;</span>
+</span><span id="Clothing.execute-83"><a href="#Clothing.execute-83"><span class="linenos">83</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="Clothing.execute-84"><a href="#Clothing.execute-84"><span class="linenos">84</span></a>            <span class="n">event_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span><span id="Clothing.execute-85"><a href="#Clothing.execute-85"><span class="linenos">85</span></a>            <span class="k">if</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="Clothing.execute-86"><a href="#Clothing.execute-86"><span class="linenos">86</span></a>                <span class="k">return</span> <span class="n">FoodPoisoning</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing.execute-87"><a href="#Clothing.execute-87"><span class="linenos">87</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span id="Clothing.execute-88"><a href="#Clothing.execute-88"><span class="linenos">88</span></a>                <span class="k">return</span> <span class="n">Theft</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing.execute-89"><a href="#Clothing.execute-89"><span class="linenos">89</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="Clothing.execute-90"><a href="#Clothing.execute-90"><span class="linenos">90</span></a>                <span class="k">return</span> <span class="n">Bite</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing.execute-91"><a href="#Clothing.execute-91"><span class="linenos">91</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+</span><span id="Clothing.execute-92"><a href="#Clothing.execute-92"><span class="linenos">92</span></a>                <span class="k">return</span> <span class="n">WagonDmg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing.execute-93"><a href="#Clothing.execute-93"><span class="linenos">93</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+</span><span id="Clothing.execute-94"><a href="#Clothing.execute-94"><span class="linenos">94</span></a>                <span class="k">return</span> <span class="n">Loot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="Clothing.execute-95"><a href="#Clothing.execute-95"><span class="linenos">95</span></a>            <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+</span><span id="Clothing.execute-96"><a href="#Clothing.execute-96"><span class="linenos">96</span></a>                <span class="k">return</span> <span class="n">OxenDied</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -711,27 +959,31 @@ randomizer    </h1>
 
     </div>
     <a class="headerlink" href="#events_occurred"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="events_occurred-67"><a href="#events_occurred-67"><span class="linenos">67</span></a><span class="k">def</span> <span class="nf">events_occurred</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
-</span><span id="events_occurred-68"><a href="#events_occurred-68"><span class="linenos">68</span></a>    <span class="c1"># pygame.mixer.music.unload()</span>
-</span><span id="events_occurred-69"><a href="#events_occurred-69"><span class="linenos">69</span></a>    <span class="c1"># pygame.mixer.music.load(os.path.join(&quot;songs&quot;, &quot;The Long Road [ ezmp3.cc ].mp3&quot;))</span>
-</span><span id="events_occurred-70"><a href="#events_occurred-70"><span class="linenos">70</span></a>    <span class="c1"># pygame.mixer.music.play(-1)</span>
-</span><span id="events_occurred-71"><a href="#events_occurred-71"><span class="linenos">71</span></a>    <span class="n">event_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-</span><span id="events_occurred-72"><a href="#events_occurred-72"><span class="linenos">72</span></a>    <span class="k">if</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="events_occurred-73"><a href="#events_occurred-73"><span class="linenos">73</span></a>        <span class="k">return</span> <span class="n">FoodPoisoning</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="events_occurred-74"><a href="#events_occurred-74"><span class="linenos">74</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-</span><span id="events_occurred-75"><a href="#events_occurred-75"><span class="linenos">75</span></a>        <span class="k">return</span> <span class="n">Theft</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="events_occurred-76"><a href="#events_occurred-76"><span class="linenos">76</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-</span><span id="events_occurred-77"><a href="#events_occurred-77"><span class="linenos">77</span></a>        <span class="k">return</span> <span class="n">Dysentery</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="events_occurred-78"><a href="#events_occurred-78"><span class="linenos">78</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-</span><span id="events_occurred-79"><a href="#events_occurred-79"><span class="linenos">79</span></a>        <span class="k">return</span> <span class="n">WagonDmg</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="events_occurred-80"><a href="#events_occurred-80"><span class="linenos">80</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-</span><span id="events_occurred-81"><a href="#events_occurred-81"><span class="linenos">81</span></a>        <span class="k">return</span> <span class="n">Loot</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</span><span id="events_occurred-82"><a href="#events_occurred-82"><span class="linenos">82</span></a>
-</span><span id="events_occurred-83"><a href="#events_occurred-83"><span class="linenos">83</span></a>
-</span><span id="events_occurred-84"><a href="#events_occurred-84"><span class="linenos">84</span></a><span class="c1"># code to test events</span>
-</span><span id="events_occurred-85"><a href="#events_occurred-85"><span class="linenos">85</span></a><span class="c1"># if __name__ == &quot;__main__&quot;:</span>
-</span><span id="events_occurred-86"><a href="#events_occurred-86"><span class="linenos">86</span></a>    <span class="c1"># stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result</span>
-</span><span id="events_occurred-87"><a href="#events_occurred-87"><span class="linenos">87</span></a>    <span class="c1"># print(events_occurred(stats_instance))  # Print the result of a random event</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="events_occurred-99"><a href="#events_occurred-99"><span class="linenos"> 99</span></a><span class="k">def</span> <span class="nf">events_occurred</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
+</span><span id="events_occurred-100"><a href="#events_occurred-100"><span class="linenos">100</span></a>    <span class="c1"># pygame.mixer.music.unload()</span>
+</span><span id="events_occurred-101"><a href="#events_occurred-101"><span class="linenos">101</span></a>    <span class="c1"># pygame.mixer.music.load(os.path.join(&quot;songs&quot;, &quot;The Long Road [ ezmp3.cc ].mp3&quot;))</span>
+</span><span id="events_occurred-102"><a href="#events_occurred-102"><span class="linenos">102</span></a>    <span class="c1"># pygame.mixer.music.play(-1)</span>
+</span><span id="events_occurred-103"><a href="#events_occurred-103"><span class="linenos">103</span></a>    <span class="n">event_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</span><span id="events_occurred-104"><a href="#events_occurred-104"><span class="linenos">104</span></a>    <span class="k">if</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="events_occurred-105"><a href="#events_occurred-105"><span class="linenos">105</span></a>        <span class="k">return</span> <span class="n">FoodPoisoning</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="events_occurred-106"><a href="#events_occurred-106"><span class="linenos">106</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span id="events_occurred-107"><a href="#events_occurred-107"><span class="linenos">107</span></a>        <span class="k">return</span> <span class="n">Theft</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="events_occurred-108"><a href="#events_occurred-108"><span class="linenos">108</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="events_occurred-109"><a href="#events_occurred-109"><span class="linenos">109</span></a>        <span class="k">return</span> <span class="n">Bite</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="events_occurred-110"><a href="#events_occurred-110"><span class="linenos">110</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+</span><span id="events_occurred-111"><a href="#events_occurred-111"><span class="linenos">111</span></a>        <span class="k">return</span> <span class="n">WagonDmg</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="events_occurred-112"><a href="#events_occurred-112"><span class="linenos">112</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+</span><span id="events_occurred-113"><a href="#events_occurred-113"><span class="linenos">113</span></a>        <span class="k">return</span> <span class="n">Loot</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="events_occurred-114"><a href="#events_occurred-114"><span class="linenos">114</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+</span><span id="events_occurred-115"><a href="#events_occurred-115"><span class="linenos">115</span></a>        <span class="k">return</span> <span class="n">OxenDied</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="events_occurred-116"><a href="#events_occurred-116"><span class="linenos">116</span></a>    <span class="k">elif</span> <span class="n">event_number</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+</span><span id="events_occurred-117"><a href="#events_occurred-117"><span class="linenos">117</span></a>        <span class="k">return</span> <span class="n">Clothing</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</span><span id="events_occurred-118"><a href="#events_occurred-118"><span class="linenos">118</span></a>
+</span><span id="events_occurred-119"><a href="#events_occurred-119"><span class="linenos">119</span></a>
+</span><span id="events_occurred-120"><a href="#events_occurred-120"><span class="linenos">120</span></a><span class="c1"># code to test events</span>
+</span><span id="events_occurred-121"><a href="#events_occurred-121"><span class="linenos">121</span></a><span class="c1"># if __name__ == &quot;__main__&quot;:</span>
+</span><span id="events_occurred-122"><a href="#events_occurred-122"><span class="linenos">122</span></a>    <span class="c1"># stats_instance = Stats()  # Create an instance of Stats -- probs not a thing for final result</span>
+</span><span id="events_occurred-123"><a href="#events_occurred-123"><span class="linenos">123</span></a>    <span class="c1"># print(events_occurred(stats_instance))  # Print the result of a random event</span>
 </span></pre></div>
 
 
