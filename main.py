@@ -27,38 +27,60 @@ class Main:
         pygame.display.set_caption("Oregon Trail")
 
         # Load background images
-        bg_title = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'oregontrail.jpg')).convert()
-        bg_char = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'oregonchar.png')).convert()
-        bg_char = pygame.transform.scale(bg_char, (1280, 720))
-        bg_saloon = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'pixelsaloon1.png')).convert()
-        bg_saloon = pygame.transform.scale(bg_saloon, (500, 400))
-        bg_independence = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'independ.png')).convert()
-        bg_kearney = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'kearney.png')).convert()
-        bg_chimney = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'chimney.png')).convert()
-        bg_laramie = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'laramie.png')).convert()
-        bg_bridger = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'bridger.png')).convert()
-        bg_hall = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'hall.png')).convert()
-        bg_boise = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'boise.png')).convert()
-        bg_mountain = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'mountain.png')).convert()
-        bg_willamette = pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'willame.png')).convert()
+        dir = os.path.dirname(__file__)
+
+        bg_title = pygame.image.load(
+            os.path.join(dir, 'images', 'oregontrail.jpg')).convert()
+        bg_char = pygame.image.load(
+            os.path.join(dir, 'images', 'oregonchar.png')).convert()
+        bg_char = pygame.transform.scale(
+            bg_char, (1280, 720))
+        bg_saloon = pygame.image.load(
+            os.path.join(dir, 'images', 'pixelsaloon1.png')).convert()
+        bg_saloon = pygame.transform.scale(
+            bg_saloon, (500, 400))
+        bg_independence = pygame.image.load(
+            os.path.join(dir, 'images', 'independ.png')).convert()
+        bg_kearney = pygame.image.load(
+            os.path.join(dir, 'images', 'kearney.png')).convert()
+        bg_chimney = pygame.image.load(
+            os.path.join(dir, 'images', 'chimney.png')).convert()
+        bg_laramie = pygame.image.load(
+            os.path.join(dir, 'images', 'laramie.png')).convert()
+        bg_bridger = pygame.image.load(
+            os.path.join(dir, 'images', 'bridger.png')).convert()
+        bg_hall = pygame.image.load(
+            os.path.join(dir, 'images', 'hall.png')).convert()
+        bg_boise = pygame.image.load(
+            os.path.join(dir, 'images', 'boise.png')).convert()
+        bg_mountain = pygame.image.load(
+            os.path.join(dir, 'images', 'mountain.png')).convert()
+        bg_willamette = pygame.image.load(
+            os.path.join(dir, 'images', 'willame.png')).convert()
 
         # Implement music
-        music_title = (
-            os.path.join(os.path.dirname(__file__), "songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
-        music_travel = (os.path.join(os.path.dirname(__file__), "songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
-        music_event = (os.path.join(os.path.dirname(__file__), "songs", "The Long Road [ ezmp3.cc ].mp3"))
-        music_death = (os.path.join(os.path.dirname(__file__), "songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
-        music_win = (os.path.join(os.path.dirname(__file__), "songs", "Trail's End [ ezmp3.cc ].mp3"))
-        music_lose = (os.path.join(os.path.dirname(__file__), "songs", "Winter's Approach [ ezmp3.cc ].mp3"))
-        music_shop = (os.path.join(os.path.dirname(__file__), "songs", "Around The Campfire [ ezmp3.cc ].mp3"))
+        music_title = (os.path.join(
+            dir, "songs", "The Oregon Trail_ Title Screen [ ezmp3.cc ].mp3"))
+        music_travel = (os.path.join(
+            dir, "songs", "The Oregon Trail [ ezmp3.cc ].mp3"))
+        music_event = (os.path.join(
+            dir, "songs", "The Long Road [ ezmp3.cc ].mp3"))
+        music_death = (os.path.join(
+            dir, "songs", "A Whisper Of Winter [ ezmp3.cc ].mp3"))
+        music_win = (os.path.join(
+            dir, "songs", "Trail's End [ ezmp3.cc ].mp3"))
+        music_lose = (os.path.join(
+            dir, "songs", "Winter's Approach [ ezmp3.cc ].mp3"))
+        music_shop = (os.path.join(
+            dir, "songs", "Around The Campfire [ ezmp3.cc ].mp3"))
 
         # Load fonts
-        font = pygame.font.Font(
-            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
-        font1 = pygame.font.Font(
-            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
-        font2 = pygame.font.Font(
-            os.path.join(os.path.dirname(__file__), 'images', 'PixelifySans-VariableFont_wght.ttf'), 20)
+        font = pygame.font.Font(os.path.join(
+                dir, 'images', 'PixelifySans-VariableFont_wght.ttf'), 25)
+        font1 = pygame.font.Font(os.path.join(
+            dir, 'images', 'PixelifySans-VariableFont_wght.ttf'), 35)
+        font2 = pygame.font.Font(os.path.join(
+            dir, 'images', 'PixelifySans-VariableFont_wght.ttf'), 20)
 
         # Music helper(s)
         def load_music(music):
@@ -81,7 +103,6 @@ class Main:
 
         # Screen helper
         screen_helper = {'screen': 'title'}
-        
         prev_screen = []
 
         # Track Variables
@@ -94,7 +115,8 @@ class Main:
         hunt = None
         seen = {}
         cost = 0
-        store = {'oxen': 0, 'food': 0, 'clothing': 0, 'ammo': 0, 'spare_parts': 0}
+        store = {'oxen': 0, 'food': 0, 
+                 'clothing': 0, 'ammo': 0, 'spare_parts': 0}
         self.total_distances = {
             0: "Independence, Missouri",
             102: "Kansas River Crossing",
@@ -136,17 +158,28 @@ class Main:
             
         ]
         location_images = {
-            0 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'independ.png')).convert(),
-            552 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'kearney.png')).convert(),
-            638 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'chimney.png')).convert(),
-            828 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'laramie.png')).convert(),
-            1169 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'bridger.png')).convert(),
-            1283 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'hall.png')).convert(),
-            1568 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'boise.png')).convert(),
-            1700 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'mountain.png')).convert(),
-            1802 : pygame.image.load(os.path.join(os.path.dirname(__file__), 'images', 'willame.png')).convert()
+            0 : pygame.image.load(os.path.join(
+                dir, 'images', 'independ.png')).convert(),
+            552 : pygame.image.load(os.path.join(
+                dir, 'images', 'kearney.png')).convert(),
+            638 : pygame.image.load(os.path.join(
+                dir, 'images', 'chimney.png')).convert(),
+            828 : pygame.image.load(os.path.join(
+                dir, 'images', 'laramie.png')).convert(),
+            1169 : pygame.image.load(os.path.join(
+                dir, 'images', 'bridger.png')).convert(),
+            1283 : pygame.image.load(os.path.join(
+                dir, 'images', 'hall.png')).convert(),
+            1568 : pygame.image.load(os.path.join(
+                dir, 'images', 'boise.png')).convert(),
+            1700 : pygame.image.load(os.path.join(
+                dir, 'images', 'mountain.png')).convert(),
+            1802 : pygame.image.load(os.path.join(
+                dir, 'images', 'willame.png')).convert()
         }
-        next_location = self.total_distances[min((dist for dist in total_distances if dist > self.stats.distance_travelled), default=None)]
+        next_location = self.total_distances[min((dist 
+            for dist in total_distances
+            if dist > self.stats.distance_travelled), default=None)]
         prev_choice = None
         # Quit button helper
         def close_window():
@@ -179,9 +212,11 @@ class Main:
                 screen_helper['screen'] = 'game'
                 for key, value in store.items():
                     if key == 'ammo':
-                        setattr(self.stats, key, getattr(self.stats, key) + value * 20)
+                        setattr(self.stats, key,
+                                getattr(self.stats, key) + value * 20)
                     else: 
-                        setattr(self.stats, key, getattr(self.stats, key) + value)
+                        setattr(self.stats, key, 
+                                getattr(self.stats, key) + value)
                     store[key] = 0
                 self.stats.money -= cost
                 
@@ -252,7 +287,8 @@ class Main:
                     input_box.draw()
 
                 # Only allow next if all input is complete
-                if all(input_box.getText() != "" for input_box in name_inputs):
+                if all(input_box.getText() != "" 
+                       for input_box in name_inputs):
                     next_button.show()
                     next_button.draw()
 
@@ -829,12 +865,16 @@ class Main:
             elif screen_helper['screen'] == 'hunt':
                 screen.fill((0, 0, 0))
                 if hunt is None:
-                    hunt_text = font1.render("You didn't find anything", True, (255, 255, 255))
+                    hunt_text = font1.render(
+                    "You didn't find anything", True, (255, 255, 255))
                 elif hunt == -1:
-                    hunt_text = font1.render("You don't have enough ammo", True, (255, 255, 255))
+                    hunt_text = font1.render(
+                    "You don't have enough ammo", True, (255, 255, 255))
                 else:
-                    hunt_text = font1.render(f"You found {hunt} lbs of food", True, (255, 255, 255))
-                screen.blit(hunt_text, (width // 2 - hunt_text.get_width() // 2, 100))
+                    hunt_text = font1.render(
+                    f"You found {hunt} lbs of food", True, (255, 255, 255))
+                screen.blit(hunt_text, (
+                width // 2 - hunt_text.get_width() // 2, 100))
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN:
@@ -843,18 +883,30 @@ class Main:
             elif screen_helper['screen'] == 'trade':   
                 
                 screen.fill((0, 0, 0))
-                trade_text = font1.render(f"Do you want to trade {yourrng} of your {trade_options[your_trade][0]} for {theirrng} of their {trade_options[their_trade][0]}", True, (255, 255, 255))
+                trade_text = font1.render(
+                f"Do you want to trade {yourrng} of your {trade_options[your_trade][0]}, "
+                f"for {theirrng} of their {trade_options[their_trade][0]}",
+                True, (255, 255, 255)
+                )
                 screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 100))
-                if not getattr(self.stats, trade_options[your_trade][0]) >= yourrng:
-                    trade_text = font1.render("You don't have enough to trade", True, (255, 255, 255))
-                    screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 200))
+                if not getattr(self.stats,
+                    trade_options[your_trade][0]) >= yourrng:
+                    trade_text = font1.render("You don't have enough to trade",
+                    True, (255, 255, 255))
+                    screen.blit(trade_text, 
+                    (width // 2 - trade_text.get_width() // 2, 200))
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_y:
                             seen['y'] = event
-                            if getattr(self.stats, trade_options[your_trade][0]) >= yourrng:
-                                setattr(self.stats, trade_options[your_trade][0], getattr(self.stats, trade_options[your_trade][0]) - yourrng)
-                                setattr(self.stats, trade_options[their_trade][0], getattr(self.stats, trade_options[their_trade][0]) + theirrng)
+                            if getattr(self.stats,
+                                trade_options[your_trade][0]) >= yourrng:
+                                setattr(self.stats, trade_options
+                                [your_trade][0], getattr(self.stats, 
+                                trade_options[your_trade][0]) - yourrng)
+                                setattr(self.stats, trade_options
+                                [their_trade][0], getattr(self.stats,
+                                trade_options[their_trade][0]) + theirrng)
                                 screen_helper['screen'] = prev_screen.pop()
                 
                         elif event.key == pygame.K_n:
@@ -864,9 +916,12 @@ class Main:
                             seen = {}
                             screen_helper['screen'] = prev_screen.pop()
                 
-                if 'y' in seen and not getattr(self.stats, trade_options[your_trade][0]) >= yourrng:
-                    trade_text = font1.render("You don't have enough to trade", True, (255, 255, 255))
-                    screen.blit(trade_text, (width // 2 - trade_text.get_width() // 2, 200))
+                if 'y' in seen and not getattr(
+                    self.stats, trade_options[your_trade][0]) >= yourrng:
+                    trade_text = font1.render(
+                    "You don't have enough to trade", True, (255, 255, 255))
+                    screen.blit(trade_text, (width // 2 - 
+                    trade_text.get_width() // 2, 200))
             elif screen_helper['screen'] == 'gameover':
                 screen.fill((0, 0, 0))
                 text = "Game over."
@@ -878,16 +933,20 @@ class Main:
                 elif self.stats.wagon_health == 0:
                     text += " Your wagon has broken down."
                 gameover_text = font1.render(text, True, (255, 255, 255))
-                screen.blit(gameover_text, (width // 2 - gameover_text.get_width() // 2, height // 2))
+                screen.blit(gameover_text, (width // 2 -
+                            gameover_text.get_width() // 2, height // 2))
                 pygame.display.flip()
             elif screen_helper['screen'] == 'win':
                 screen.fill((0, 0, 0))
-                gameover_text = font1.render("Congratulations You Reached Oregon", True, (255, 255, 255))
-                screen.blit(gameover_text, (width // 2 - gameover_text.get_width() // 2, height // 2))
+                gameover_text = font1.render(
+                    "Congratulations You Reached Oregon",
+                    True, (255, 255, 255))
+                screen.blit(gameover_text, (width // 2 -
+                            gameover_text.get_width() // 2, height // 2))
                 if not pygame.mixer.music.get_busy():
                     load_music(music_win)
                     ever_music()
-                pygame.display.flip()    
+                pygame.display.flip()
             # Update the display
             pygame.display.flip()
 
