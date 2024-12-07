@@ -196,20 +196,5 @@ class Stats:
         # Update the number of deaths
         self.__deaths = 1
 
-    def increase_day(self):
-        # Increase the current day of the month
-        if self.__month == 1 or self.__month == 3 or self.__month == 5 or self.__month == 7 or self.__month == 8 or self.__month == 10 or self.__month == 12:
-            if self.__day == 31:
-                self.__day = 1
-                self.__month = 1
-        elif self.__month == 4 or self.__month == 6 or self.__month == 9 or self.__month == 11:
-            if self.__day == 30:
-                self.__day = 1
-                self.__month = 1
-        elif self.__month == 2:
-            if self.__day == 28:
-                self.__day = 1
-                self.__month = 1
-        else:
-            self.__day = 1
+ 
 
