@@ -7,3 +7,7 @@ __pycache__/stats.cpython-313.pyc
 __pycache__/unittest.cpython-313.pyc
 .coverage
 .DS_Store
+classes.puml
+packages.puml
+__pycache__/buttons.cpython-313.pyc
+__pycache__/main.cpython-313.pyc
